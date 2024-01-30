@@ -10,5 +10,3 @@ JSX
 https://www.figma.com/file/6FMWkB94wE7KTkcCgUXtnC/Дипломный-проект?type=design&node-id=1-7661&mode=design&t=aSQRQffkwxycaYNz-0
 
 # Ссылка на фронтенд 
-
-mv781mestofront.nomoredomainsmonster.ru 
