@@ -1,0 +1,21 @@
+.page__content {
+  display: flex;
+  flex-direction: column;
+  min-width: 292px;
+  margin:0 auto;
+  height: 100%;
+  width: 100%;
+}
+
+@media screen and (max-width: 927px) {
+  .page__content {
+     
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .page__content {
+     
+
+  }
+}

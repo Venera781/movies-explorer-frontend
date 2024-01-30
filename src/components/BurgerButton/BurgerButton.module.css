@@ -1,0 +1,36 @@
+.burgerbutton {
+  width: 40px;
+  height: 43px;
+  background-image: url(../../images/menuburger.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: 0 0 0 auto;
+  border: none;
+  padding: 0;
+  background-color: transparent;
+  box-sizing: border-box;
+}
+.burgerbutton:hover {
+  cursor: pointer;
+}
+
+.burgerbutton__active {
+  cursor: pointer;
+  transition: opacity 0.2s linear;
+}
+
+.burgerbutton__active:hover {
+  opacity: 0.5;
+}
+
+@media (max-width: 768px) {
+  .burgerbutton {
+    width: 44px;
+    height: 44px;
+  }
+}
+@media (max-width: 1200px) {
+  .burgerbutton {
+    display: block;
+  }
+}

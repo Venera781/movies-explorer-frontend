@@ -1,0 +1,230 @@
+.about {
+  display: grid;
+  padding: 70px 18px 70px;
+  justify-content: center;
+  grid-template:
+    'title'
+    'line'
+    'subtitleone'
+    'textone'
+    'subtitletwo'
+    'texttwo'
+    'duration';
+  box-sizing: border-box;
+  
+}
+.about__h2subtitle {
+  grid-area: title;
+  width: 100%;
+  color: #fff;
+  font-family: Inter;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.72px;
+  text-align: left;
+  margin: 0 0 28px;
+}
+.about__line {
+  grid-area: line;
+  width: 100%;
+  height: 1px;
+  flex-shrink: 0;
+  background: #dadada;
+}
+.about__subtitleone {
+  grid-area: subtitleone;
+  width: 100%;
+  color: #fff;
+  font-family: Inter;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.72px;
+  text-align: left;
+  margin: 60px 0 16px;
+}
+.about__textone {
+  grid-area: textone;
+  width: 100%;
+  color: #fff;
+  font-family: Inter;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px;
+  margin: 0;
+}
+.about__subtitletwo {
+  grid-area: subtitletwo;
+  width: 100%;
+  color: #fff;
+  font-family: Inter;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.72px;
+  text-align: left;
+  margin: 56px 0 16px;
+}
+.about__texttwo {
+  grid-area: texttwo;
+  width: 100%;
+  color: #fff;
+  font-family: Inter;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px;
+  margin: 0;
+}
+.about__duration {
+  grid-area: duration;
+  display: grid;
+  width: 100%;
+  margin-top: 60px;
+  grid-template:
+    'wrapperone wrapperone'
+    'wrappertwo  wrappertwo';
+}
+.about__wrapperone {
+  grid-area: wrapperone;
+  display: grid;
+  grid-template-columns: 35% 65%;
+}
+.about__wrappertwo {
+  grid-area: wrappertwo;
+  display: grid;
+  grid-template-columns: 35% 65%;
+}
+.about__oneweek {
+  position: relative;
+  background: #3ddc84;
+  color: #000;
+  text-align: center;
+  font-family: Inter;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  padding: 9px 10px;
+  margin: 0;
+}
+
+.about__fourweek {
+  position: relative;
+  background: #303030;
+  flex-shrink: 0;
+  color: #fff;
+  text-align: center;
+  font-family: Inter;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin: 0;
+  padding: 11px 52px;
+}
+
+.about__back {
+  color: #a0a0a0;
+  text-align: center;
+  font-family: Inter;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  
+}
+.about__front {
+  color: #a0a0a0;
+  text-align: center;
+  font-family: Inter;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+@media screen and (min-width: 768px) {
+  .about {
+    padding: 90px 50px;
+    column-gap: 30px;
+    grid-template:
+      'title title'
+      'line line'
+      'subtitleone subtitletwo'
+      'textone texttwo'
+      'duration duration';
+  }
+  .about__wrapperone {
+    grid-template-columns: 21% 79%;
+  }
+  .about__wrappertwo {
+    grid-template-columns: 21% 79%;
+  }
+  .about__h2subtitle {
+    font-size: 22px;
+    letter-spacing: -0.88px;
+    margin-bottom: 23px;
+  }
+  .about__subtitleone {
+    margin: 70px 0 22px;
+    font-size: 20px;
+    letter-spacing: -0.8px;
+  }
+  .about__subtitletwo {
+    margin: 70px 0 22px;
+    font-size: 20px;
+    letter-spacing: -0.8px;
+  }
+  .about__textone {
+    font-size: 12px;
+    line-height: 18px;
+  }
+  .about__texttwo {
+    font-size: 12px;
+    line-height: 18px;
+  }
+  .about__duration {
+    margin-top: 93px;
+  }
+  .about__oneweek {
+    font-size: 14px;
+  }
+  .about__fourweek {
+    font-size: 14px;
+  }
+  .about__back {
+    font-size: 14px;
+    line-height: 17px;
+  }
+  .about__front {
+    font-size: 14px;
+    line-height: 17px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .about {
+    padding: 110px 70px;
+    column-gap: 40px;
+  }
+  .about__subtitleone {
+    margin-bottom: 26px;
+  }
+  .about__textone {
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .about__texttwo {
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .about__duration {
+    margin-top: 110px;
+  }
+}

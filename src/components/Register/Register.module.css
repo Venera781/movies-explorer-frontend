@@ -1,0 +1,247 @@
+.registerform {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  padding: 56px 0 30px;
+  justify-content: center;
+  grid-template:
+    'logolink'
+    '.' 50px
+    'title'
+    '.' 80px
+    'form'
+    '.' 1fr
+    'buttonedit'
+    '.' 14px
+    'buttonlogin';
+}
+.registerform__logo {
+  grid-area: logolink;
+  width: 38px;
+  height: 38px;
+  margin: 0;
+  background-image: url(../../images/logo.svg);
+  background-size: contain;
+  text-decoration: none;
+  justify-self: center;
+}
+.registerform__title {
+  grid-area: title;
+  color: #fff;
+  text-align: center;
+  font-family: Inter;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin: 0;
+}
+.registerform__inputs {
+  grid-area: form;
+  width: 100%;
+  display: grid;
+  justify-content: center;
+  grid-template:
+    'name_l'
+    '.' 10px
+    'name_i'
+    '.' 20px
+    'email_l'
+    '.' 10px
+    'email_i'
+    '.' 20px
+    'password_l'
+    '.' 10px
+    'password_i'
+    '.' 10px
+    'error';
+  margin: 0;
+  border: none;
+  padding: 0;
+}
+.registerform__labelname {
+  grid-area: name_l;
+  width: 260px;
+  color: #8b8b8b;
+  font-family: Inter;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.registerform__inputname {
+  grid-area: name_i;
+  display: block;
+  width: 260px;
+  height: 46px;
+  border-radius: 8px;
+  background: #2f2f2f;
+  color: #fff;
+  font-family: Inter;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  padding: 15px;
+  border: none;
+  box-sizing: border-box;
+}
+.registerform__labelemail {
+  grid-area: email_l;
+  width: 260px;
+  color: #8b8b8b;
+  font-family: Inter;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.registerform__inputemail {
+  grid-area: email_i;
+  width: 260px;
+  height: 46px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  background: #2f2f2f;
+  color: #fff;
+  font-family: Inter;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  padding: 15px;
+  border: none;
+  box-sizing: border-box;
+}
+.registerform__labelpassword {
+  grid-area: password_l;
+  width: 260px;
+  color: #8b8b8b;
+  font-family: Inter;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.registerform__inputpassword {
+  grid-area: password_i;
+  width: 260px;
+  height: 46px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  background: #2f2f2f;
+  color: #fff;
+  font-family: Inter;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  padding: 15px;
+  border: none;
+  box-sizing: border-box;
+}
+.registerform__error {
+  grid-area: error;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  color: rgba(255, 0, 0, 1);
+  width: 260px;
+}
+
+.registerform__buttonedit {
+  grid-area: buttonedit;
+  width: 260px;
+  height: 45px;
+  flex-shrink: 0;
+  border-radius: 3px;
+  background: #4285f4;
+  color: #fff;
+  text-align: center;
+  font-family: Inter;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  border: none;
+  margin: 0 auto;
+}
+.registerform__buttonlogin {
+  grid-area: buttonlogin;
+  text-decoration: none;
+  color: #4285f4;
+  text-align: center;
+  font-family: Inter;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  width: 260px;
+}
+.registerform__textbtn {
+  grid-area: buttonlogin;
+  color: #8b8b8b;
+  text-align: center;
+  font-family: Inter;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+@media screen and (min-width: 768px) {
+  .registerform {
+    padding: 232px 0 232px;
+    grid-template:
+      'logolink'
+      '.' 40px
+      'title'
+      '.' 40px
+      'form'
+      '.' minmax(70px, 1fr)
+      'buttonedit'
+      '.' 16px
+      'buttonlogin';
+  }
+  .registerform__logo {
+    margin-left: 0;
+    justify-self: start;
+  }
+  .registerform__title{
+    text-align: start;
+  }
+  .registerform__labelname {
+    width: 396px;
+  }
+  .registerform__inputname {
+    width: 396px;
+  }
+  .registerform__labelemail {
+    width: 396px;
+  }
+  .registerform__inputemail {
+    width: 396px;
+  }
+  .registerform__labelpassword {
+    width: 396px;
+  }
+  .registerform__inputpassword {
+    width: 396px;
+  }
+  .registerform__buttonedit {
+    width: 396px;
+    font-size: 14px;
+  }
+  .registerform__buttonlogin {
+    font-size: 14px;
+    width: 396px;
+  }
+  .registerform__textbtn {
+    font-size: 14px;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .registerform {
+    padding: 70px 0 70px;
+  }
+}

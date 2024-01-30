@@ -1,0 +1,58 @@
+.menu {
+  justify-content: start;
+  gap: 16px;
+}
+
+.menu__closebutton {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  right: -13.4px;
+  top: -13.4px;
+  cursor: pointer;
+  background-image: url(../../images/closebtn.svg);
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: center;
+  padding: 0;
+}
+.menu__link {
+  color: #fff;
+  font-family: Inter;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px;
+  text-decoration: none;
+}
+.menu__link_active {
+  font-weight: 500;
+}
+
+.menu__closebutton:hover {
+  opacity: 0.6;
+}
+
+.menu__profilebutton {
+  margin: 444px auto 0;
+  width: 100px;
+  height: 32px;
+  flex-shrink: 0;
+  border-radius: 20px;
+  background: #313131;
+  color: #fff;
+  text-align: center;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 16px;
+}
+
+@media screen and (min-width: 1280px) {
+  .menu__button {
+    background-size: 22px 22px;
+    top: -30px;
+    right: -30px;
+  }
+}

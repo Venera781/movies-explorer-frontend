@@ -1,0 +1,212 @@
+.loginform {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  padding: 56px 0 30px;
+  justify-content: center;
+  grid-template:
+    'logolink'
+    '.' 50px
+    'title'
+    '.' 80px
+    'form'
+    '.' minmax(16px, 1fr)
+    'buttonedit'
+    '.' 16px
+    'buttonlogiin';
+}
+
+.loginform__logo {
+  display: flex;
+  grid-area: logolink;
+  margin-left: auto;
+  margin-right: auto;
+  width: 38px;
+  height: 38px;
+  margin: 0;
+  background-size: contain;
+  background-image: url(../../images/logo.svg);
+  background-size: contain;
+  text-decoration: none;
+  justify-self: center;
+}
+
+.loginform__title {
+  grid-area: title;
+  color: #fff;
+  text-align: center;
+  font-family: Inter;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin: 0;
+}
+.loginform__inputs {
+  grid-area: form;
+  display: grid;
+  justify-content: center;
+  grid-template:
+    'email_l'
+    '.' 10px
+    'email_i'
+    '.' 20px
+    'password_l'
+    '.' 10px
+    'password_i'
+    '.' 10px
+    'error';
+  margin: 0;
+  border: none;
+  padding: 0;
+}
+.loginform__labelemail {
+  grid-area: email_l;
+  width: 260px;
+  color: #8b8b8b;
+  font-family: Inter;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.loginform__inputemail {
+  grid-area: email_i;
+  width: 260px;
+  height: 46px;
+  border-radius: 8px;
+  background: #2f2f2f;
+  color: #fff;
+  font-family: Inter;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  padding: 15px;
+  border: none;
+  box-sizing: border-box;
+}
+.loginform__labelpassword {
+  grid-row: password_l;
+  width: 260px;
+  color: #8b8b8b;
+  font-family: Inter;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.loginform__inputpassword {
+  grid-area: password_i;
+  width: 260px;
+  height: 46px;
+  border-radius: 8px;
+  background: #2f2f2f;
+  color: #fff;
+  font-family: Inter;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  padding: 15px;
+  border: none;
+  box-sizing: border-box;
+}
+.loginform__error {
+  display: none;
+  grid-area: error;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  color: rgba(255, 0, 0, 1);
+  width: 260px;
+}
+
+.loginform__buttonedit {
+  grid-area: buttonedit;
+  width: 260px;
+  height: 45px;
+  flex-shrink: 0;
+  border-radius: 3px;
+  background: #4285f4;
+  color: #fff;
+  text-align: center;
+  font-family: Inter;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  border: none;
+  margin: 0 auto;
+}
+.loginform__buttonlogiin {
+  grid-area: buttonlogiin;
+  text-decoration: none;
+  color: #4285f4;
+  text-align: center;
+  font-family: Inter;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-top: 14px;
+}
+.loginform__textbtn {
+  color: #8b8b8b;
+  text-align: center;
+  font-family: Inter;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+@media screen and (min-width: 768px) {
+  .loginform {
+    padding: 232px 0 232px;
+    grid-template:
+      'logolink'
+      '.' 40px
+      'title'
+      '.' 40px
+      'form'
+      '.' minmax(160px, 1fr)
+      'buttonedit'
+      '.' 
+      'buttonlogiin';
+  }
+  .loginform__logo {
+    margin-left: 0;
+    justify-self: start;
+  }
+  .loginform__title{
+    text-align: start;
+  }
+  .loginform__labelemail {
+    width: 396px;
+  }
+  .loginform__inputemail {
+    width: 396px;
+  }
+  .loginform__labelpassword {
+    width: 396px;
+  }
+  .loginform__inputpassword {
+    width: 396px;
+  }
+  .loginform__buttonedit {
+    width: 396px;
+    font-size: 14px;
+  }
+  .loginform__buttonlogiin {
+    font-size: 14px;
+  }
+  .loginform__textbtn {
+    font-size: 14px;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .loginform {
+    padding: 70px 0 70px;
+  }
+}
