@@ -1,5 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import css from './NotFound.module.css';
+import cx from '../../utils/cx';
 
 const Error = () => {
   const navigate = useNavigate();

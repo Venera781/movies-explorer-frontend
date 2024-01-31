@@ -8,7 +8,6 @@ import Protected from '../Protected';
 import Register from '../Register/Register';
 import SavedMovies from '../SavedMovies/SavedMovies';
 import Login from '../Login/Login';
-import MobileMenu from '../MobileMenu/MobileMenu';
 import NotFound from '../NotFound/NotFound';
 
 const App = () => {

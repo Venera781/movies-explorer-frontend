@@ -24,7 +24,8 @@ const MoviesCard = ({ name, duration, imageUrl, state }) => {
             aria-label="Выбран фильм"
           ></button>
         );
-      case MovieState.delete:
+      // case MovieState.delete:
+      default:
         return (
           <button
             className={cx(css.moviescard__icondelete, 'button')}

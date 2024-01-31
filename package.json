@@ -11,8 +11,8 @@
   "scripts": {
     "start": "cross-env DISABLE_ESLINT_PLUGIN=true react-scripts start",
     "build": "react-scripts build",
-    "lint": "eslint --ext .js,.jsx ./src/**",
-    "lint:fix": "eslint --fix --ext .js,.jsx ./src/**",
+    "lint":  "eslint \"./src/**/*.{js,jsx}\"",
+    "lint:fix": "eslint --fix \"./src/**/*.{js,jsx}\"",
     "prettier": "prettier --write ."
   },
   "eslintConfig": {

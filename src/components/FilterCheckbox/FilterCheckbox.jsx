@@ -1,5 +1,4 @@
 import { useId } from 'react';
-import cx from '../../utils/cx';
 
 import css from './FilterCheckbox.module.css';
 
