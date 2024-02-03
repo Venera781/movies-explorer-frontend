@@ -31,7 +31,6 @@
   justify-self: end;
   margin-top: 25px;
   margin-right: 25px;
-  
 }
 
 .mobilemenu__closebutton:hover {
@@ -51,7 +50,6 @@
   font-feature-settings:
     'clig' off,
     'liga' off;
-  font-family: Inter;
   font-size: 18px;
   font-style: normal;
   font-weight: 500;
@@ -79,7 +77,6 @@
   background: #313131;
   color: #fff;
   text-align: center;
-  font-family: Inter;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
@@ -87,5 +84,10 @@
   text-decoration: none;
   padding: 8px 20px;
   margin: 0 auto 46px;
+  opacity: 1;
+  transition: opacity 0.5 easy;
 }
-
+.mobilemenu__profilebutton:hover {
+  opacity: 0.7;
+  cursor: pointer;
+}

@@ -1,6 +1,5 @@
 .navtab {
   display: flex;
-  position: relative;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 17px;
@@ -12,7 +11,6 @@
   border-radius: 6px;
   background: #303030;
   color: #fff;
-  font-family: Inter;
   font-size: 10px;
   font-style: normal;
   font-weight: 500;
@@ -22,12 +20,18 @@
   padding-top: 5px;
   padding-bottom: 5px;
   box-sizing: border-box;
+  opacity: 1;
+  transition: opacity 0.5 easy;
 }
 .navtab__item:not(:last-child) {
   margin-right: 6px;
 }
+.navtab__item:hover {
+  opacity: 0.7;
+  cursor: pointer;
+}
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 600px) {
   .navtab {
     margin-bottom: 30px;
   }

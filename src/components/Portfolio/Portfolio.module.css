@@ -5,7 +5,6 @@
 }
 .portfolio__h2subtitle {
   color: #a0a0a0;
-  font-family: Inter;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -24,23 +23,28 @@
   align-items: center;
   justify-content: space-between;
   color: #fff;
-  font-family: Inter;
   font-size: 18px;
   font-style: normal;
   font-weight: 400;
   line-height: 28px;
+  margin-top: 1px;
   letter-spacing: -0.72px;
+  opacity: 1;
+  transition: opacity 0.5 easy;
 }
-
+.portfolio__link:hover {
+  opacity: 0.7;
+  cursor: pointer;
+}
 .portfolio__link::after {
   display: block;
   content: '';
   width: 18px;
   height: 28px;
-  background-image: url('../../images/arrow.svg');
+  background-image: url(../../images/arrow.svg);
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 18px 28px;
+  background-size: 10px 20px;
   box-sizing: border-box;
 }
 .portfolio__line {
@@ -48,9 +52,9 @@
   background: #e6e6e6;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 600px) {
   .portfolio {
-    padding: 0 50px 90px;
+    padding: 0 50px 87px;
   }
   .portfolio__h2subtitle {
     font-size: 18px;
@@ -66,26 +70,24 @@
     line-height: 50px;
     letter-spacing: -1.12px;
   }
-  .portfolio__link::after  {
-    background-size: 27px 60px;
+  .portfolio__link::after {
+    background-size: 17px 45px;
     width: 27px;
     height: 60px;
   }
 }
 
-@media screen and (min-width: 1280px) {
+@media screen and (min-width: 769px) {
   .portfolio {
-    padding: 0 70px 125px;
+    padding: 0 70px 120px;
   }
   .portfolio__sites {
     row-gap: 15px;
   }
   .portfolio__link {
     font-size: 30px;
-    
   }
   .portfolio__link::after {
-    background-size: 29px 60px;
     width: 29px;
   }
 }

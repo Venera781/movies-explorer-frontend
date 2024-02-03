@@ -1,15 +1,40 @@
 import css from './Login.module.css';
+import cx from '../../utils/cx';
 import { useId } from 'react';
 import { Link } from 'react-router-dom';
-import cx from '../../utils/cx';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+
+const schema = yup
+  .object()
+  .shape({
+    email: yup.string().email().required(),
+    password: yup.string().required(),
+  })
+  .required();
 
 const Login = () => {
   const emaiId = useId();
   const passwordId = useId();
 
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isValid, isSubmitting, isSubmitted },
+  } = useForm({ resolver: yupResolver(schema) });
+
+  const onLogin = ({ email, password }) => {
+    console.log(`Email:${email}, Пароль:${password}`);
+  };
+
   return (
-    <form className={css.loginform} name="loginform" action="#">
-      <Link to="/" className={cx(css.loginform__logo, 'button')}></Link>
+    <form
+      className={css.loginform}
+      name="loginform"
+      onSubmit={handleSubmit(onLogin)}
+    >
+      <Link to="/" className={css.loginform__logo}></Link>
       <h1 className={css.loginform__title}>Рады видеть!</h1>
       <fieldset className={css.loginform__inputs}>
         <label htmlFor={emaiId} className={css.loginform__labelemail}>
@@ -17,33 +42,44 @@ const Login = () => {
         </label>
         <input
           id={emaiId}
-          className={css.loginform__inputemail}
+          className={cx(
+            css.loginform__inputemail,
+            errors.email && css.loginform__input_error,
+          )}
           placeholder="Email"
-          value=""
-          required
+          {...register('email')}
         />
         <label htmlFor={passwordId} className={css.loginform__labelpassword}>
           Пароль
         </label>
         <input
           id={passwordId}
-          className={css.loginform__inputpassword}
           placeholder="Пароль"
-          value=""
-          required
+          type="password"
+          className={cx(
+            css.loginform__inputpassword,
+            errors.password && css.loginform__input_error,
+          )}
+          {...register('password')}
         />
-        <span className={css.loginform__error}>Что-то пошло не так...</span>
+        <p
+          className={cx(
+            css.loginform__error,
+            !isValid && isSubmitted && css.loginform__error_visible,
+          )}
+        >
+          Что-то пошло не так...
+        </p>
       </fieldset>
-      <button className={cx(css.loginform__buttonedit, 'button')}>Войти</button>
-      <Link
-        to="/signup"
-        className={cx(css.loginform__buttonlogiin, 'button__link')}
-      >
-        <span className={css.loginform__textbtn}>
-          Ещё не зарегистрированы?{' '}
-        </span>{' '}
-        Регистрация
-      </Link>
+      <button className={css.loginform__buttonedit} disabled={isSubmitting}>
+        Войти
+      </button>
+      <div className={css.loginform__wrapper}>
+        <p className={css.loginform__textbtn}>Ещё не зарегистрированы?</p>
+        <Link to="/signup" className={css.loginform__buttonlogiin}>
+          Регистрация
+        </Link>
+      </div>
     </form>
   );
 };

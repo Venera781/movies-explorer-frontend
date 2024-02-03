@@ -24,7 +24,6 @@
   width: 100%;
   margin-right: 10px;
 }
-
 .searchform__button {
   display: block;
   grid-column: 3/4;
@@ -39,17 +38,29 @@
   padding: 0;
   box-sizing: border-box;
   margin: 0;
+  opacity: 1;
+  transition: opacity 0.5 easy;
+}
+.searchform__button:hover {
+  opacity: 0.8;
+  cursor: pointer;
 }
 .searchform__checkbox {
   margin-bottom: 39px;
   align-self: center;
+  opacity: 1;
+  transition: opacity 0.5 easy;
+}
+.searchform__checkbox {
+  opacity: 0.8;
+  cursor: pointer;
 }
 .searchform__line {
   height: 1px;
   background: #424242;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 600px) {
   .searchform {
     margin-left: 30px;
     margin-right: 30px;
@@ -64,8 +75,7 @@
   }
 }
 
-
-@media screen and (min-width: 1280px) {
+@media screen and (min-width: 769px) {
   .searchform {
     margin-left: 70px;
     margin-right: 70px;

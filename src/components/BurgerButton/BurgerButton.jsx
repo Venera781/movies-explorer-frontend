@@ -20,8 +20,7 @@ const BurgerButton = ({ className }) => {
         className={cx(
           css.burgerbutton,
           css.burgerbutton__active,
-          'button',
-          className,
+          className
         )}
         type="button"
         onClick={toggleMenu}

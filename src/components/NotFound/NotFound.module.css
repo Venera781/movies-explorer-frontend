@@ -1,22 +1,19 @@
 .notfound {
   display: grid;
-  grid-template: 'data' 1fr/1fr;
-  margin: 0;
-  height: 100%;
-}
-.notfound__wrapper {
-  grid-area: data;
-  justify-self: center;
-  align-self: center;
-  display: flex;
-  flex-flow: column;
-  gap: 10px;
+  grid-template:
+    '.' 329px
+    'name'
+    '.' 10px
+    'description'
+    '.' 284px
+    'button';
+  margin: 0 auto 30px;
 }
 
 .notfound__name {
+  grid-area: name;
   color: #fff;
   text-align: center;
-  font-family: Inter;
   font-size: 80px;
   font-style: normal;
   font-weight: 400;
@@ -25,9 +22,9 @@
   margin: 0;
 }
 .notfound__description {
+  grid-area: description;
   color: #fff;
   text-align: center;
-  font-family: Inter;
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
@@ -36,10 +33,9 @@
   margin: 0;
 }
 .notfound__buttonback {
-  grid-area: data;
+  grid-area: button;
   color: #4285f4;
   text-align: center;
-  font-family: Inter;
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
@@ -48,11 +44,26 @@
   justify-self: center;
   align-self: end;
   margin-bottom: 30px;
+  color: #4285f4;
+  background-color: inherit;
+  border: none;
+  opacity: 1;
+  transition: opacity 0.5 easy;
+}
+.notfound__buttonback:hover {
+  opacity: 0.7;
+  cursor: pointer;
 }
 
-@media screen and (min-width: 768px) {
-  .notfound__wrapper {
-    gap: 5px;
+@media screen and (min-width: 600px) {
+  .notfound {
+    grid-template:
+      '.' 408px
+      'name'
+      '.' 5px
+      'description'
+      '.' 184px
+      'button';
   }
   .notfound__name {
     font-size: 140px;
@@ -66,7 +77,16 @@
   }
 }
 
-@media screen and (min-width: 1280px) {
+@media screen and (min-width: 769px) {
+  .notfound {
+    grid-template:
+      '.' 246px
+      'name'
+      '.' 5px
+      'description'
+      '.' 184px
+      'button';
+  }
   .notfound__buttonback {
     margin-bottom: 60px;
   }

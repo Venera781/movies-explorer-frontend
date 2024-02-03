@@ -14,14 +14,14 @@
   display: contents;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 600px) {
   .moviescardlist {
     row-gap: 45px;
     grid-template-columns: repeat(auto-fit, 339px);
   }
 }
 
-@media screen and (min-width: 1280px) {
+@media screen and (min-width: 769px) {
   .moviescardlist {
     row-gap: 58px;
     grid-template-columns: repeat(auto-fit, 360px);

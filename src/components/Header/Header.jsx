@@ -2,17 +2,16 @@ import css from './Header.module.css';
 import Navigation from '../Navigation/Navigation';
 import BurgerButton from '../BurgerButton/BurgerButton';
 import { Link } from 'react-router-dom';
-import cx from '../../utils/cx';
 
 const Header = () => {
-  const isAuthorized = false;
+  const isAuthorized = true;
   let el;
 
   if (isAuthorized) {
     el = (
       <>
         <Navigation className={css.header__navigation} />
-        <Link to="/profile" className={cx(css.header__profilebutton, 'button')}>
+        <Link to="/profile" className={css.header__profilebutton}>
           Аккаунт
         </Link>
         <BurgerButton className={css.header__burgerbutton} />
@@ -21,10 +20,10 @@ const Header = () => {
   } else {
     el = (
       <div className={css.header__wrapper}>
-        <Link to="/signup" className={cx(css.header__register, 'button__link')}>
+        <Link to="/signup" className={css.header__register}>
           Регистрация
         </Link>
-        <Link to="/signin" className={cx(css.header__login, 'button__link')}>
+        <Link to="/signin" className={css.header__login}>
           Войти
         </Link>
       </div>
@@ -33,7 +32,7 @@ const Header = () => {
 
   return (
     <header className={css.header}>
-      <Link to="/" className={cx(css.header__logo, 'button')}></Link>
+      <Link to="/" className={css.header__logo}></Link>
       {el}
     </header>
   );

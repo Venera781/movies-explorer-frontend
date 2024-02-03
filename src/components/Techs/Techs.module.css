@@ -6,7 +6,6 @@
 }
 .tech__h2subtitle {
   color: #fff;
-  font-family: Inter;
   font-size: 18px;
   font-style: normal;
   font-weight: 400;
@@ -23,7 +22,6 @@
 .tech__h3subtitle {
   color: #fff;
   text-align: center;
-  font-family: Inter;
   font-size: 30px;
   font-style: normal;
   font-weight: 400;
@@ -34,7 +32,6 @@
 .tech__text {
   color: #fff;
   text-align: center;
-  font-family: Inter;
   font-size: 11px;
   font-style: normal;
   font-weight: 400;
@@ -46,13 +43,14 @@
 .tech__types {
   display: grid;
   justify-content: center;
-  grid-template-rows: repeat(4, 57px);
-  grid-template-columns: repeat(2, 84px);
+  grid-template-columns: repeat(auto-fit, 84px);
   gap: 10px;
+  list-style: none;
+  margin: 0;
+  padding: 0 40px 0;
 }
 .tech__type {
-  width: 84px;
-  height: 57px;
+  min-height: 57px;
   border-radius: 10px;
   background: #303030;
   margin: 0;
@@ -62,7 +60,6 @@
   box-sizing: border-box;
   color: #fff;
   text-align: center;
-  font-family: Inter;
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
@@ -70,7 +67,7 @@
   letter-spacing: -0.48px;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 600px) {
   .tech {
     padding: 75px 50px;
   }
@@ -86,24 +83,24 @@
     margin-top: 80px;
     margin-bottom: 22px;
   }
+  .tech__types {
+    padding: 0 10px 0;
+  }
   .tech__text {
-    width: 460px;
+    max-width: 460px;
+    width: 100%;
     font-size: 12px;
     line-height: 18px;
     letter-spacing: -0.48px;
     margin-bottom: 83px;
   }
-  .tech__types {
-    grid-template-rows: 1fr;
-    grid-template-columns: repeat(7, 84px);
-  }
 }
 
-@media screen and (min-width: 1280px) {
+@media screen and (min-width: 769px) {
   .tech {
     padding: 85px 70px;
   }
-  .tech__h2subtitle{
+  .tech__h2subtitle {
     margin: 0 0 23px;
   }
   .tech__h3subtitle {
@@ -117,12 +114,11 @@
     margin-bottom: 100px;
   }
   .tech__types {
-    grid-template-rows: 1fr;
-    grid-template-columns: repeat(7, 90px);
+    grid-template-columns: repeat(auto-fit, 90px);
+    padding: 0;
   }
   .tech__type {
-    width: 90px;
-    height: 60px;
+    min-height: 60px;
     font-size: 14px;
     letter-spacing: -0.56px;
   }

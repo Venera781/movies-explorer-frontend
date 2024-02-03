@@ -10,10 +10,8 @@
 }
 .promo__title {
   display: flex;
-  position: relative;
   width: 292px;
   color: #fff;
-  font-family: Inter;
   font-size: 29px;
   font-style: normal;
   font-weight: 400;
@@ -26,14 +24,7 @@
   margin-right: auto;
 }
 
-@media screen and (min-width: 425px) {
-  .promo__title {
-    width: 400px;
-    margin-bottom: 243px;
-  }
-}
-
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 600px) {
   .promo {
     margin-top: 20px;
     margin-left: 20px;
@@ -41,25 +32,26 @@
   }
   .promo__title {
     font-size: 40px;
-    width: 680px;
+    width: 100%;
+    max-width: 680px;
     line-height: 52px;
     margin-top: 350px;
     margin-bottom: 314px;
   }
 }
 
-@media screen and (min-width: 1280px) {
+@media screen and (min-width: 769px) {
   .promo {
     margin-left: 40px;
     margin-right: 40px;
   }
   .promo__title {
-    width: 730px;
+    width: 100%;
+    max-width: 730px;
     font-size: 50px;
     letter-spacing: -2px;
     line-height: 58px;
     margin-bottom: 151px;
     margin-top: 160px;
-
   }
 }

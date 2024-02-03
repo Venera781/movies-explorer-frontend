@@ -1,15 +1,15 @@
 import { useMemo } from 'react';
 import css from './MoviesCard.module.css';
 import MovieState from '../../utils/MovieState';
-import cx from '../../utils/cx';
 
-const MoviesCard = ({ name, duration, imageUrl, state }) => {
+const MoviesCard = ({ onMovieLike, onDeleteClick, name, duration, imageUrl, state }) => {
+
   const activeButton = useMemo(() => {
     switch (state) {
       case MovieState.save:
         return (
           <button
-            className={cx(css.moviescard__iconsave, 'button')}
+            className={css.moviescard__iconsave}
             type="button"
             aria-label='"Сохранить фильм'
           >
@@ -19,7 +19,7 @@ const MoviesCard = ({ name, duration, imageUrl, state }) => {
       case MovieState.saved:
         return (
           <button
-            className={cx(css.moviescard__iconsaved, 'button')}
+            className={css.moviescard__iconsaved}
             type="button"
             aria-label="Выбран фильм"
           ></button>
@@ -28,13 +28,14 @@ const MoviesCard = ({ name, duration, imageUrl, state }) => {
       default:
         return (
           <button
-            className={cx(css.moviescard__icondelete, 'button')}
+            className={css.moviescard__icondelete}
             type="button"
             aria-label="Удалить фильм"
           ></button>
         );
     }
   }, [state]);
+
   return (
     <article className={css.moviescard}>
       <img

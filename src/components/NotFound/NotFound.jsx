@@ -1,6 +1,5 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import css from './NotFound.module.css';
-import cx from '../../utils/cx';
 
 const Error = () => {
   const navigate = useNavigate();
@@ -9,17 +8,11 @@ const Error = () => {
   };
   return (
     <div className={css.notfound}>
-      <div className={css.notfound__wrapper}>
-        <p className={css.notfound__name}>404</p>
-        <p className={css.notfound__description}>Страница не найдена</p>
-      </div>
-      <Link
-        to="#"
-        className={cx(css.notfound__buttonback, 'button__link')}
-        onBack={goBack}
-      >
+      <p className={css.notfound__name}>404</p>
+      <p className={css.notfound__description}>Страница не найдена</p>
+      <button className={css.notfound__buttonback} onClick={goBack}>
         Назад
-      </Link>
+      </button>
     </div>
   );
 };

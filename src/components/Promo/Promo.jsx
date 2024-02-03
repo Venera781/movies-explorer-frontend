@@ -3,12 +3,12 @@ import css from './Promo.module.css';
 
 const Promo = () => {
   return (
-    <div className={css.promo}>
+    <section className={css.promo}>
       <h1 className={css.promo__title}>
         Учебный проект студента факультета Веб-разработки.
       </h1>
       <NavTab />
-    </div>
+    </section>
   );
 };
 export default Promo;

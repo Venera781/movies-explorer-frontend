@@ -1,36 +1,34 @@
 import css from './Footer.module.css';
-import { Link } from 'react-router-dom';
-import cx from '../../utils/cx';
 
 const Footer = () => {
   return (
-    <section className={css.footer}>
-      <Link
-        className={cx(css.footer__link, 'button__link')}
+    <footer className={css.footer}>
+      <a
+        className={css.footer__link}
         target="_blank"
-        to="https://github.com/Venera781/movies-explorer-frontend"
+        href="https://github.com/Venera781/movies-explorer-frontend" rel="noreferrer"
       >
         Учебный проект Яндекс.Практикум х BeatFilm.
-      </Link>
+      </a>
       <div className={css.footer__line}></div>
       <div className={css.footer__wrapper}>
-        <Link
-          className={cx(css.footer__linkyandex, 'button__link')}
+        <a
+          className={css.footer__linkyandex}
           target="_blank"
-          to="https://practicum.yandex.ru/"
+          href="https://practicum.yandex.ru/" rel="noreferrer"
         >
           Яндекс.Практикум
-        </Link>
-        <Link
-          className={cx(css.footer__linkgithub, 'button__link')}
+        </a>
+        <a
+          className={css.footer__linkgithub}
           target="_blank"
-          to="https://github.com/Venera781/"
+          href="https://github.com/Venera781/" rel="noreferrer"
         >
           Github
-        </Link>
+        </a>
         <p className={css.footer__copyright}>© 2020</p>
       </div>
-    </section>
+    </footer>
   );
 };
 export default Footer;

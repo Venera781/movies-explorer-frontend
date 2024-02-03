@@ -1,7 +1,7 @@
 import css from './AboutMe.module.css';
 const AboutMe = () => {
   return (
-    <section className={css.aboutme}>
+    <section id="aboutme" className={css.aboutme}>
       <h2 className={css.aboutme__h2subtitle}>Студент</h2>
       <div className={css.aboutme__line}></div>
       <img
@@ -18,7 +18,13 @@ const AboutMe = () => {
         как прошёл курс по веб-разработке, начал заниматься фриланс-заказами и
         ушёл с постоянной работы.
       </p>
-      <p className={css.aboutme__github}>Github</p>
+      <a
+        target="_blank"
+        href="https://github.com/Venera781/"
+        className={css.aboutme__github} rel="noreferrer"
+      >
+        Github
+      </a>
     </section>
   );
 };

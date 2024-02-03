@@ -5,7 +5,7 @@ import SearchForm from '../SearchForm/SearchForm';
 import cx from '../../utils/cx';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 
-const MoviesPage = ({ showMore = false }) => {
+const MoviesPage = ({ showMore = false, movies }) => {
   return (
     <>
       <Header />
@@ -16,11 +16,9 @@ const MoviesPage = ({ showMore = false }) => {
           !showMore && css.moviespage__withoutmore,
         )}
       >
-        <MoviesCardList className={css.moviespage__movies} />
+        <MoviesCardList className={css.moviespage__movies} movies={movies} />
       </div>
-      {showMore && (
-        <button className={cx(css.moviespage__button, 'button')}>Ещё</button>
-      )}
+      {showMore && <button className={css.moviespage__button}>Ещё</button>}
       <Footer />
     </>
   );

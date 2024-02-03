@@ -8,13 +8,18 @@
   width: 100%;
   color: #8b8b8b;
   text-align: center;
-  font-family: Inter;
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
   margin: 0 auto 21px;
   text-decoration: none;
+  opacity: 1;
+  transition: opacity 0.5 easy;
+}
+.footer__link {
+  opacity: 0.7;
+  cursor: pointer;
 }
 .footer__line {
   width: 100%;
@@ -36,7 +41,6 @@
   width: 100%;
   color: #8b8b8b;
   text-align: center;
-  font-family: Inter;
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
@@ -44,11 +48,16 @@
   margin: 0 auto 12px;
   text-decoration: none;
   color: #fff;
-  font-family: Inter;
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  opacity: 1;
+  transition: opacity 0.5 easy;
+}
+.footer__linkyandex:hover {
+  opacity: 0.7;
+  cursor: pointer;
 }
 
 .footer__linkgithub {
@@ -57,24 +66,27 @@
   width: 100%;
   color: #8b8b8b;
   text-align: center;
-  font-family: Inter;
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
   margin: 0 auto 30px;
   color: #fff;
-  font-family: Inter;
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  opacity: 1;
+  transition: opacity 0.5 easy;
+}
+.footer__linkgithub:hover {
+  opacity: 0.7;
+  cursor: pointer;
 }
 
 .footer__copyright {
   grid-area: copyright;
   color: #8b8b8b;
-  font-family: Inter;
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
@@ -83,7 +95,7 @@
   text-align: center;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 600px) {
   .footer {
     padding: 79px 30px 20px;
   }
@@ -92,7 +104,7 @@
     margin-bottom: 20px;
   }
   .footer__line {
-    margin-bottom:  20px;
+    margin-bottom: 20px;
   }
   .footer__wrapper {
     grid-template: 'copyright  linkyandex linkgithub'/1fr;
@@ -114,9 +126,9 @@
   }
 }
 
-@media screen and (min-width: 1280px) {
+@media screen and (min-width: 769px) {
   .footer {
-    padding-left:  70px;
+    padding-left: 70px;
     padding-right: 70px;
   }
 }

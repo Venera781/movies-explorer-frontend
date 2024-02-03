@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import css from './Portfolio.module.css';
-import cx from '../../utils/cx';
 
 const Portfolio = () => {
   return (
@@ -8,7 +7,7 @@ const Portfolio = () => {
       <h2 className={css.portfolio__h2subtitle}>Портфолио</h2>
       <div className={css.portfolio__sites}>
         <Link
-          className={cx(css.portfolio__link, 'button__link')}
+          className={css.portfolio__link}
           target="_blank"
           to="https://github.com/Venera781/how-to-learn"
         >
@@ -16,7 +15,7 @@ const Portfolio = () => {
         </Link>
         <div className={css.portfolio__line}></div>
         <Link
-          className={cx(css.portfolio__link, 'button__link')}
+          className={css.portfolio__link}
           target="_blank"
           to="https://venera781.github.io/russian-travel/"
         >
@@ -24,7 +23,7 @@ const Portfolio = () => {
         </Link>
         <div className={css.portfolio__line}></div>
         <Link
-          className={cx(css.portfolio__link, 'button__link')}
+          className={css.portfolio__link}
           target="_blank"
           to="https://github.com/Venera781/react-mesto-api-full-gha"
         >

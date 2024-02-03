@@ -31,15 +31,20 @@
   padding: 11px 20px;
   color: #fff;
   text-align: center;
-  font-family: Inter;
   font-size: 12px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
   justify-content: center;
+  opacity: 1;
+  transition: opacity 0.5 easy;
+}
+.moviespage__button:hover {
+  opacity: 0.7;
+  cursor: pointer;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 600px) {
   .moviespage__withmore {
     grid-template:
       '.' 80px
@@ -60,7 +65,7 @@
     width: 320px;
   }
 }
-@media screen and (min-width: 1280px) {
+@media screen and (min-width: 769px) {
   .moviespage__withmore {
     grid-template:
       '.' 80px

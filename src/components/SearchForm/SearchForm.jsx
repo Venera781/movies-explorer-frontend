@@ -1,5 +1,4 @@
 import css from './SearchForm.module.css';
-import cx from '../../utils/cx';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 
 const SearchForm = () => {
@@ -17,7 +16,7 @@ const SearchForm = () => {
         />
         <button
           type="submit"
-          className={cx(css.searchform__button, 'button')}
+          className={css.searchform__button}
         ></button>
       </div>
       <FilterCheckbox className={css.searchform__checkbox} />

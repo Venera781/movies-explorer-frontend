@@ -35,7 +35,7 @@ const MobileMenu = ({ onClose }) => {
       </nav>
       <Link
         to="/profile"
-        className={cx(css.mobilemenu__profilebutton, 'button__link')}
+        className={css.mobilemenu__profilebutton}
       >
         Аккаунт
       </Link>
