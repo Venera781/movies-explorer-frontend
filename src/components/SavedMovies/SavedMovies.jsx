@@ -10,14 +10,14 @@ const movies = [
     state: MovieState.delete,
   },
   {
-    id: 1,
+    id: 2,
     name: '33 слова о дизайне',
     duration: '1ч 17м',
     imageUrl: '/images/film.jpg',
     state: MovieState.delete,
   },
   {
-    id: 1,
+    id: 3,
     name: '33 слова о дизайне',
     duration: '1ч 17м',
     imageUrl: '/images/film.jpg',
