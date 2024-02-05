@@ -22,7 +22,7 @@ const Profile = () => {
   return (
     <>
       <Header />
-      {currentEl}
+      <main>{currentEl}</main>
     </>
   );
 };

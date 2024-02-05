@@ -9,16 +9,18 @@ const MoviesPage = ({ showMore = false, movies }) => {
   return (
     <>
       <Header />
-      <SearchForm />
-      <div
-        className={cx(
-          showMore && css.moviespage__withmore,
-          !showMore && css.moviespage__withoutmore,
-        )}
-      >
-        <MoviesCardList className={css.moviespage__movies} movies={movies} />
-      </div>
-      {showMore && <button className={css.moviespage__button}>Ещё</button>}
+      <main>
+        <SearchForm />
+        <div
+          className={cx(
+            showMore && css.moviespage__withmore,
+            !showMore && css.moviespage__withoutmore,
+          )}
+        >
+          <MoviesCardList className={css.moviespage__movies} movies={movies} />
+        </div>
+        {showMore && <button className={css.moviespage__button}>Ещё</button>}
+      </main>
       <Footer />
     </>
   );

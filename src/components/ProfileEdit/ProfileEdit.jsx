@@ -76,7 +76,7 @@ const ProfileEdit = ({ onEditFinish }) => {
       >
         При обновлении профиля произошла ошибка.
       </p>
-      <button className={css.profileedit__buttonsave} disabled={isSubmitting}>
+      <button className={css.profileedit__buttonsave} disabled={isSubmitting || (isSubmitted && !isValid)}>
         Сохранить
       </button>
     </form>

@@ -7,13 +7,13 @@ const Error = () => {
     navigate(-1);
   };
   return (
-    <div className={css.notfound}>
+    <main className={css.notfound}>
       <p className={css.notfound__name}>404</p>
       <p className={css.notfound__description}>Страница не найдена</p>
       <button className={css.notfound__buttonback} onClick={goBack}>
         Назад
       </button>
-    </div>
+    </main>
   );
 };
 export default Error;

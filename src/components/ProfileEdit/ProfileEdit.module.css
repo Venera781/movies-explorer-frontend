@@ -4,9 +4,6 @@
     'header'
     'form'
     '.' 379px
-    'buttonedit'
-    '.' 16px
-    'buttonexit'
     'error'
     'buttonsave'
     /1fr;
@@ -86,46 +83,6 @@
   height: 1px;
   background: #424242;
 }
-
-.profileedit__button {
-  grid-area: buttonedit;
-  width: 300px;
-  color: #fff;
-  text-align: center;
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  background: transparent;
-  padding: 0;
-  border: none;
-  margin: 0 auto 0;
-  text-decoration: none;
-  opacity: 1;
-  transition: opacity 0.5 easy;
-}
-.profileedit__button:hover {
-  opacity: 0.8;
-  cursor: pointer;
-}
-.profileedit__exit {
-  grid-area: buttonexit;
-  color: #ee3465;
-  text-align: center;
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-  width: 300px;
-  text-decoration: none;
-  margin: 0 auto;
-  opacity: 1;
-  transition: opacity 0.5 easy;
-}
-.profileedit__exit:hover {
-  opacity: 0.8;
-  cursor: pointer;
-}
 .profileedit__error {
   grid-area: error;
   visibility: hidden;
@@ -135,6 +92,7 @@
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  margin: 0 auto 20px;
 }
 .profileedit__error_visible {
   visibility: visible;
@@ -148,7 +106,7 @@
   transition: opacity 0.5 easy;
   border-radius: 3px;
   background: #3456f3;
-  width: 100%;
+  width: 260px;
   height: 45px;
   color: #fff;
   color: #fff;
@@ -158,12 +116,15 @@
   font-weight: 500;
   line-height: normal;
   border: none;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto 40px;
 }
 .profileedit__buttonsave:hover {
   opacity: 0.8;
   cursor: pointer;
+}
+.profileedit__buttonsave:disabled {
+  background: #f8f8f8;
+  color: #c2c2c2;
 }
 
 @media screen and (min-width: 600px) {
@@ -173,9 +134,6 @@
       'header'
       'form'
       '.' 210px
-      'buttonedit'
-      '.' 16px
-      'buttonexit'
       'error'
       'buttonsave'
       /1fr;
@@ -196,17 +154,9 @@
   .profileedit__line {
     width: 410px;
   }
-
-  .profileedit__button {
-    width: 410px;
-    font-size: 13px;
-  }
   .profileedit__buttonsave {
     width: 410px;
-  }
-  .profileedit__exit {
-    font-size: 13px;
-    width: 410px;
+    margin-bottom: 269px;
   }
 }
 @media screen and (min-width: 769px) {
@@ -216,14 +166,15 @@
       'header'
       'form'
       '.' 220px
-      'buttonedit'
-      '.' 16px
-      'buttonexit'
       'error'
       'buttonsave'
       /1fr;
   }
   .profileedit__title {
     margin-bottom: 123px;
+  }
+  .profileedit__buttonsave {
+    width: 410px;
+    margin-bottom: 70px;
   }
 }

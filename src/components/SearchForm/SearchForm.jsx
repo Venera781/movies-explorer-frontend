@@ -1,22 +1,44 @@
 import css from './SearchForm.module.css';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+
+const schema = yup
+  .object()
+  .shape({
+    moviesname: yup.string().required(),
+  })
+  .required();
 
 const SearchForm = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { isSubmitting },
+  } = useForm({ resolver: yupResolver(schema) });
+
+  const onSearch = ({ moviesname }) => {
+    console.log(`Название фильма:${moviesname}`);
+  };
+
   return (
-    <form action="#" className={css.searchform} name="searchform">
+    <form
+      onSubmit={handleSubmit(onSearch)}
+      className={css.searchform}
+      name="searchform"
+    >
       <div className={css.searchform__wrapper}>
         <input
-          className={css.searchform__input}
-          type="text"
-          name="searchfilm"
-          value=""
-          required
           autoComplete="off"
           placeholder="Фильм"
+          className={css.searchform__input}
+          {...register('moviesname')}
         />
         <button
           type="submit"
           className={css.searchform__button}
+          disabled={isSubmitting}
         ></button>
       </div>
       <FilterCheckbox className={css.searchform__checkbox} />
