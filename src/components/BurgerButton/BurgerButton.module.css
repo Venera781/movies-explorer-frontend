@@ -1,0 +1,41 @@
+.burgerbutton {
+  width: 40px;
+  height: 43px;
+  background-image: url(../../images/menuburger.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: 0 0 0 auto;
+  border: none;
+  padding: 0;
+  background-color: transparent;
+  box-sizing: border-box; 
+  background-size: 40px 43px;
+  opacity: 1;
+  transition: opacity 0.5 easy;
+}
+.burgerbutton:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.burgerbutton__active {
+  cursor: pointer;
+  transition: opacity 0.2s linear;
+}
+
+.burgerbutton__active:hover {
+  opacity: 0.5;
+}
+
+@media (min-width: 600px) {
+  .burgerbutton {
+    width: 44px;
+    height: 44px;
+    background-size: 44px;
+  }
+}
+@media (min-width: 769px) {
+  .burgerbutton {
+    display: none;
+  }
+}

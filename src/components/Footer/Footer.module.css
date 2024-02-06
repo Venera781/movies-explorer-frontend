@@ -1,0 +1,134 @@
+.footer {
+  display: flex;
+  flex-direction: column;
+  padding: 79px 10px 20px;
+}
+.footer__link {
+  text-decoration: none;
+  width: 100%;
+  color: #8b8b8b;
+  text-align: center;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin: 0 auto 21px;
+  text-decoration: none;
+  opacity: 1;
+  transition: opacity 0.5 easy;
+}
+.footer__link {
+  opacity: 0.7;
+  cursor: pointer;
+}
+.footer__line {
+  width: 100%;
+  height: 1px;
+  background: #424242;
+  margin: 0 auto 30px;
+}
+
+.footer__wrapper {
+  display: grid;
+  grid-template:
+    'linkyandex'
+    'linkgithub'
+    'copyright';
+}
+.footer__linkyandex {
+  grid-area: linkyandex;
+  text-decoration: none;
+  width: 100%;
+  color: #8b8b8b;
+  text-align: center;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin: 0 auto 12px;
+  text-decoration: none;
+  color: #fff;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  opacity: 1;
+  transition: opacity 0.5 easy;
+}
+.footer__linkyandex:hover {
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+.footer__linkgithub {
+  grid-area: linkgithub;
+  text-decoration: none;
+  width: 100%;
+  color: #8b8b8b;
+  text-align: center;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin: 0 auto 30px;
+  color: #fff;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  opacity: 1;
+  transition: opacity 0.5 easy;
+}
+.footer__linkgithub:hover {
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+.footer__copyright {
+  grid-area: copyright;
+  color: #8b8b8b;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin: 0;
+  text-align: center;
+}
+
+@media screen and (min-width: 600px) {
+  .footer {
+    padding: 79px 30px 20px;
+  }
+  .footer__link {
+    font-size: 13px;
+    margin-bottom: 20px;
+  }
+  .footer__line {
+    margin-bottom: 20px;
+  }
+  .footer__wrapper {
+    grid-template: 'copyright  linkyandex linkgithub'/1fr;
+  }
+  .footer__copyright {
+    text-align: start;
+    margin-bottom: 0;
+    font-size: 13px;
+  }
+  .footer__linkyandex {
+    margin-right: 43px;
+    margin-bottom: 0;
+    font-size: 13px;
+  }
+  .footer__linkgithub {
+    text-align: end;
+    margin-bottom: 0;
+    font-size: 13px;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .footer {
+    padding-left: 70px;
+    padding-right: 70px;
+  }
+}

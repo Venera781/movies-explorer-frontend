@@ -1,0 +1,93 @@
+.mobilemenu {
+  display: grid;
+  position: fixed;
+  max-width: 520px;
+  width: 100%;
+  height: 100vh;
+  right: 0;
+  justify-self: stretch;
+  top: 0;
+  grid-template:
+    'closebtn'
+    '.' 99px
+    'menu'
+    '.' 1fr
+    'btnprofile';
+  background: #202020;
+}
+
+.mobilemenu__closebutton {
+  grid-area: closebtn;
+  display: block;
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+  background-image: url(../../images/closebtn.svg);
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: none;
+  padding: 0;
+  justify-self: end;
+  margin-top: 25px;
+  margin-right: 25px;
+}
+
+.mobilemenu__closebutton:hover {
+  opacity: 0.6;
+}
+
+.mobilemenu__links {
+  grid-area: menu;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.mobilemenu__link {
+  color: #fff;
+  font-feature-settings:
+    'clig' off,
+    'liga' off;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  text-decoration: none;
+  display: grid;
+  grid-auto-flow: row;
+  justify-content: center;
+  gap: 7px;
+}
+.mobilemenu__link::after {
+  content: '';
+  background-color: transparent;
+  height: 2px;
+}
+.mobilemenu__link_active::after {
+  background-color: white;
+}
+.mobilemenu__profilebutton {
+  grid-area: btnprofile;
+  width: 100px;
+  height: 32px;
+  box-sizing: border-box;
+  border-radius: 20px;
+  background: #313131;
+  color: #fff;
+  text-align: center;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 16px;
+  text-decoration: none;
+  padding: 8px 20px;
+  margin: 0 auto 46px;
+  opacity: 1;
+  transition: opacity 0.5 easy;
+}
+.mobilemenu__profilebutton:hover {
+  opacity: 0.7;
+  cursor: pointer;
+}

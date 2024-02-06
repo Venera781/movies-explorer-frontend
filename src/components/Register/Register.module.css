@@ -1,0 +1,267 @@
+.registerform {
+  display: grid;
+  padding: 56px 0 30px;
+  justify-content: center;
+  grid-template:
+    'logolink'
+    '.' 50px
+    'title'
+    '.' 80px
+    'form'
+    '.' 153px
+    'buttonedit'
+    '.' 14px
+    'wrapper';
+}
+.registerform__logo {
+  grid-area: logolink;
+  width: 38px;
+  height: 38px;
+  margin: 0;
+  background-image: url(../../images/logo.svg);
+  background-size: contain;
+  text-decoration: none;
+  justify-self: center;
+  opacity: 1;
+  transition: opacity 0.5 easy;
+}
+.registerform__logo:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.registerform__title {
+  grid-area: title;
+  color: #fff;
+  text-align: center;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin: 0;
+}
+.registerform__inputs {
+  grid-area: form;
+  display: grid;
+  justify-content: center;
+  grid-template:
+    'name_l'
+    '.' 10px
+    'name_i'
+    '.' 20px
+    'email_l'
+    '.' 10px
+    'email_i'
+    '.' 20px
+    'password_l'
+    '.' 10px
+    'password_i'
+    '.' 10px
+    'error';
+  margin: 0;
+  border: none;
+  padding: 0;
+}
+.registerform__labelname {
+  grid-area: name_l;
+  width: 260px;
+  color: #8b8b8b;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.registerform__inputname {
+  grid-area: name_i;
+  display: block;
+  width: 260px;
+  height: 46px;
+  border-radius: 8px;
+  background: #2f2f2f;
+  color: #fff;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  padding: 15px;
+  border: none;
+  box-sizing: border-box;
+}
+.registerform__labelemail {
+  grid-area: email_l;
+  width: 260px;
+  color: #8b8b8b;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.registerform__inputemail {
+  grid-area: email_i;
+  width: 260px;
+  height: 46px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  background: #2f2f2f;
+  color: #fff;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  padding: 15px;
+  border: none;
+  box-sizing: border-box;
+}
+.registerform__labelpassword {
+  grid-area: password_l;
+  width: 260px;
+  color: #8b8b8b;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.registerform__inputpassword {
+  grid-area: password_i;
+  width: 260px;
+  height: 46px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  background: #2f2f2f;
+  color: #fff;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  padding: 15px;
+  border: none;
+  box-sizing: border-box;
+}
+.registerform__error {
+  visibility: hidden;
+  grid-area: error;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  color: #ee3465;
+  width: 260px;
+  margin: 0;
+  padding: 0;
+}
+.registerform__error_visible {
+  visibility: visible;
+}
+.registerform__input_error {
+  color: #ee3465;
+}
+.registerform__buttonedit {
+  grid-area: buttonedit;
+  width: 260px;
+  height: 45px;
+  border-radius: 3px;
+  background: #4285f4;
+  color: #fff;
+  text-align: center;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  border: none;
+  margin: 0;
+  opacity: 1;
+  transition: opacity 0.5 easy;
+}
+.registerform__buttonedit:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+.registerform__wrapper {
+  grid-area: wrapper;
+  justify-self: center;
+}
+.registerform__buttonlogin {
+  text-decoration: none;
+  color: #4285f4;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin: 0;
+  opacity: 1;
+  transition: opacity 0.5 easy;
+}
+.registerform__buttonlogin:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+.registerform__textbtn {
+  color: #8b8b8b;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+  margin-right: 6px;
+}
+
+@media screen and (min-width: 600px) {
+  .registerform {
+    padding: 232px 0 232px;
+    grid-template:
+      'logolink'
+      '.' 40px
+      'title'
+      '.' 40px
+      'form'
+      '.' 65px
+      'buttonedit'
+      '.' 16px
+      'wrapper';
+  }
+  .registerform__logo {
+    margin-left: 0;
+    justify-self: start;
+  }
+  .registerform__title {
+    text-align: start;
+  }
+  .registerform__inputs {
+    justify-self: start;
+  }
+  .registerform__labelname {
+    width: 396px;
+  }
+  .registerform__inputname {
+    width: 396px;
+  }
+  .registerform__labelemail {
+    width: 396px;
+  }
+  .registerform__inputemail {
+    width: 396px;
+  }
+  .registerform__labelpassword {
+    width: 396px;
+  }
+  .registerform__inputpassword {
+    width: 396px;
+  }
+  .registerform__buttonedit {
+    width: 396px;
+    font-size: 14px;
+  }
+  .registerform__buttonlogin {
+    font-size: 14px;
+    width: 396px;
+  }
+  .registerform__textbtn {
+    font-size: 14px;
+  }
+}
+@media screen and (min-width: 769px) {
+  .registerform {
+    padding: 70px 0 70px;
+  }
+}
