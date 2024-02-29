@@ -1,19 +1,22 @@
 import { useId } from 'react';
-
 import css from './FilterCheckbox.module.css';
+import { useController } from 'react-hook-form';
 
-const FilterCheckbox = ({ className }) => {
-  const id = useId();
+const FilterCheckbox = ({ children, className, control, name }) => {
+  const checkId = useId();
+
+  const { field } = useController({ control, name });
   return (
     <div className={className}>
       <input
         className={css.filtercheckbox__checkbox}
-        id={id}
+        id={checkId}
         type="checkbox"
-        name="filter"
+        {...field}
+        checked={field.value}
       />
-      <label className={css.filtercheckbox__checklabel} htmlFor={id}>
-        Короткометражки
+      <label className={css.filtercheckbox__checklabel} htmlFor={checkId}>
+        {children}
       </label>
     </div>
   );

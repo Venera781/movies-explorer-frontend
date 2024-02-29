@@ -8,6 +8,7 @@ const Profile = () => {
 
   const onEditFinish = useCallback(() => {
     setIsEditing(false);
+    
   }, []);
   const onStartEdit = useCallback(() => {
     setIsEditing(true);

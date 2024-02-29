@@ -2,12 +2,14 @@ import css from './Header.module.css';
 import Navigation from '../Navigation/Navigation';
 import BurgerButton from '../BurgerButton/BurgerButton';
 import { Link } from 'react-router-dom';
+import { useUserState } from '../../contexts/CurrentUserContext';
+import StateUser from '../../utils/StateUser';
 
 const Header = () => {
-  const isAuthorized = true;
+  const userState = useUserState();
   let el;
 
-  if (isAuthorized) {
+  if (userState === StateUser.loggedIn) {
     el = (
       <>
         <Navigation className={css.header__navigation} />

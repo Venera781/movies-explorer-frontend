@@ -1,8 +1,22 @@
+import { useCallback } from 'react';
 import css from './ProfileView.module.css';
+import { clearSavedMovies } from '../../contexts/MoviesContext';
+import mainapi from '../../utils/MainApi';
+import { useNavigate } from 'react-router-dom';
+import { useUserEmail, useUserName } from '../../contexts/CurrentUserContext';
 
 const ProfileView = ({ onStartEdit }) => {
-  const name = 'Виталий';
-  const email = 'pochta@yandex.ru';
+  const name = useUserName();
+  const email = useUserEmail();
+  const navigate = useNavigate();
+
+  const doExit = useCallback(async () => {
+    try {
+      await mainapi.signout();
+      clearSavedMovies();
+      navigate('/');
+    } catch {}
+  }, [navigate]);
 
   return (
     <div className={css.profileview}>
@@ -17,7 +31,9 @@ const ProfileView = ({ onStartEdit }) => {
       <button className={css.profileview__button} onClick={onStartEdit}>
         Редактировать
       </button>
-      <button className={css.profileview__exit}>Выйти из аккаунта</button>
+      <button className={css.profileview__exit} onClick={doExit}>
+        Выйти из аккаунта
+      </button>
     </div>
   );
 };

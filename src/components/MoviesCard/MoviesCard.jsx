@@ -1,8 +1,12 @@
 import { useMemo } from 'react';
 import css from './MoviesCard.module.css';
 import MovieState from '../../utils/MovieState';
+import Duration from '../Duration/Duration';
+import { useModifyFavorite } from '../../contexts/MoviesContext';
 
-const MoviesCard = ({ onMovieLike, onDeleteClick, name, duration, imageUrl, state }) => {
+const MoviesCard = ({ movie }) => {
+  const [addFavorite, removeFavorite, removeFavoriteMain] = useModifyFavorite();
+  const { nameRU, duration, thumbnail, state, trailerLink } = movie;
 
   const activeButton = useMemo(() => {
     switch (state) {
@@ -12,6 +16,9 @@ const MoviesCard = ({ onMovieLike, onDeleteClick, name, duration, imageUrl, stat
             className={css.moviescard__iconsave}
             type="button"
             aria-label='"Сохранить фильм'
+            onClick={() => {
+              addFavorite(movie);
+            }}
           >
             Сохранить
           </button>
@@ -20,8 +27,11 @@ const MoviesCard = ({ onMovieLike, onDeleteClick, name, duration, imageUrl, stat
         return (
           <button
             className={css.moviescard__iconsaved}
-            type="button"
             aria-label="Выбран фильм"
+            type='button'
+            onClick ={() => {
+              removeFavoriteMain(movie);
+            }}
           ></button>
         );
       // case MovieState.delete:
@@ -31,21 +41,31 @@ const MoviesCard = ({ onMovieLike, onDeleteClick, name, duration, imageUrl, stat
             className={css.moviescard__icondelete}
             type="button"
             aria-label="Удалить фильм"
+            onClick={() => {
+              removeFavorite(movie);
+            }}
           ></button>
         );
     }
-  }, [state]);
+  }, [state, addFavorite, removeFavorite, movie, removeFavoriteMain]);
 
   return (
     <article className={css.moviescard}>
-      <img
-        className={css.moviescard__image}
-        src={imageUrl}
-        alt="Изображение из фильма"
-      />
+      <a
+        href={trailerLink}
+        target="_blank"
+        className={css.moviescard__link}
+        rel="noreferrer"
+      >
+        <img
+          className={css.moviescard__image}
+          src={thumbnail}
+          alt="Изображение из фильма"
+        />
+      </a>
       {activeButton}
-      <h2 className={css.moviescard__title}>{name}</h2>
-      <p className={css.moviescard__duration}>{duration}</p>
+      <h2 className={css.moviescard__title}>{nameRU}</h2>
+      <Duration className={css.moviescard__duration} value={duration} />
     </article>
   );
 };
