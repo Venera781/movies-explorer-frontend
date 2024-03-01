@@ -14,7 +14,6 @@ export const schema = yup
       .min(2, 'Необходимо минимум 2 символа')
       .matches(/^[а-яёa-z]+$/i, 'Необходима кириллица или латиница')
       .required('Нужно ввести название фильма'),
-    isShort: yup.boolean(),
   })
   .required();
 
@@ -24,17 +23,19 @@ const SearchForm = () => {
   const {
     register,
     handleSubmit,
-    control,
     formState: { isSubmitting, isValid, isSubmitted },
   } = useForm({
-    defaultValues: { isShort, moviesname: text },
+    defaultValues: { moviesname: text },
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = ({ moviesname, isShort }) => {
+  const onSubmit = ({ moviesname }) => {
     filterMovies(moviesname, isShort);
   };
 
+  const onShortCheked = () => {
+    filterMovies(undefined, !isShort);
+  };
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
@@ -64,8 +65,9 @@ const SearchForm = () => {
       </div>
       <FilterCheckbox
         className={css.searchform__checkbox}
-        control={control}
         name="isShort"
+        checked={isShort}
+        onChecked={onShortCheked}
       >
         Короткометражки
       </FilterCheckbox>

@@ -112,8 +112,8 @@ const moviesReducer = (state, action) => {
         break;
       }
       case Actions.FilterMovies: {
-        const text = action.text;
-        const isShort = action.isShort;
+        const text = action.text ?? draft.text;
+        const isShort = action.isShort ?? draft.isShort;
         let currentMovies = null;
         if (text) {
           const fixedText = text.toLowerCase();
