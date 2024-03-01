@@ -2,16 +2,19 @@ import css from './MoviesCardList.module.css';
 import MoviesCard from '../MoviesCard/MoviesCard';
 import { useEffect, useRef, useState } from 'react';
 import { useMovies } from '../../contexts/MoviesContext';
+import CardsCount from '../../utils/cardsCount';
+import ScreenSize from '../../utils/ScreenSize';
+import VisCount from '../../utils/VisCount';
 
 const getCardsValues = () => {
   const width = window.innerWidth;
-  let minCards = 5;
-  let newCount = 2;
-  if (width >= 1280) {
-    minCards = 12;
-    newCount = 3;
-  } else if (width >= 768) {
-    minCards = 8;
+  let minCards = CardsCount.mobile;
+  let newCount = CardsCount.mobileNewCount;
+  if (width >= ScreenSize.web) {
+    minCards = CardsCount.web;
+    newCount = CardsCount.webNewCount;
+  } else if (width >= ScreenSize.iPad) {
+    minCards = CardsCount.iPad;
   }
   return { minCards, newCount };
 };
@@ -22,7 +25,7 @@ const MoviesCardList = () => {
   const [realVisibleCount, setRealVisibleCount] = useState(visibleCount);
 
   useEffect(() => {
-    if (visibleCount === -1) {
+    if (visibleCount === VisCount.mines) {
       const { minCards } = getCardsValues();
       lastVisibleCount.current = minCards;
       setRealVisibleCount(minCards);
@@ -72,7 +75,9 @@ const MoviesCardList = () => {
     <>
       <section className={css.moviescardlist}>
         <ul className={css.moviescardlist__items}>
-          {movies && movies.length !== 0 && count !== -1 ? (
+          {movies &&
+          movies.length !== VisCount.plus &&
+          count !== VisCount.mines ? (
             movies.slice(0, count).map((movie) => {
               return (
                 <li className={css.moviescardlist__element} key={movie.id}>
@@ -80,12 +85,12 @@ const MoviesCardList = () => {
                 </li>
               );
             })
-          ) : isSearchMode && count !== -1 ? (
+          ) : isSearchMode && count !== VisCount.mines ? (
             <p className={css.moviescardlist__message}>Ничего не найдено</p>
           ) : null}
         </ul>
       </section>
-      {movies && movies.length > count && count !== -1 ? (
+      {movies && movies.length > count && count !== VisCount.mines ? (
         <button className={css.moviescardlist__button} onClick={showMoreMovies}>
           Ещё
         </button>

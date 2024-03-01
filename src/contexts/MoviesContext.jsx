@@ -9,7 +9,7 @@ import MovieState from '../utils/MovieState';
 import { produce } from 'immer';
 import mainapi from '../utils/MainApi';
 
-const MOVIES_KEY = 'currentmovies1';
+const MOVIES_KEY = 'currentmovies';
 const MoviesContext = createContext();
 const MoviesChangeContext = createContext();
 
