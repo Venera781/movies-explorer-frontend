@@ -14,7 +14,8 @@ const MoviesContext = createContext();
 const MoviesChangeContext = createContext();
 
 export const useMovies = () => {
-  return useContext(MoviesContext).currentMovies;
+  const ctx = useContext(MoviesContext);
+  return [ctx.currentMovies, ctx.text !== ''];
 };
 
 export const useModifyFavorite = () => {

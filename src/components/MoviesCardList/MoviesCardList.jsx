@@ -17,7 +17,7 @@ const getCardsValues = () => {
 };
 
 const MoviesCardList = () => {
-  const movies = useMovies();
+  const [movies, isSearchMode] = useMovies();
   const lastMovies = useRef(null);
   const [showMovies, setShowMovies] = useState(null);
 
@@ -31,35 +31,35 @@ const MoviesCardList = () => {
     setShowMovies(movies.slice(0, minCards));
   }, [movies]);
 
-  // useEffect(() => {
-  //   let isBusy = false;
-  //   const onResize = () => {
-  //     if (isBusy) {
-  //       return;
-  //     }
-  //     isBusy = true;
+  useEffect(() => {
+    let isBusy = false;
+    const onResize = () => {
+      if (isBusy) {
+        return;
+      }
+      isBusy = true;
 
-  //     requestAnimationFrame(() => {
-  //       const movies = lastMovies.current;
-  //       const { minCards, newCount } = getCardsValues();
-  //       setShowMovies((old) => {
-  //         if (old.length < minCards) {
-  //           return movies.slice(0, minCards);
-  //         }
-  //         const newLength = old.length - minCards;
-  //         const correctNewLength = Math.ceil(newLength / newCount) * newCount;
-  //         if (newLength === correctNewLength) {
-  //           return old;
-  //         }
-  //         return movies.slice(0, minCards + correctNewLength);
-  //       });
-  //       isBusy = false;
-  //     });
-  //   };
-  //   window.addEventListener('resize', onResize, { passive: true });
-  //   return () =>
-  //     window.removeEventListener('resize', onResize, { passive: true });
-  // }, []);
+      requestAnimationFrame(() => {
+        const movies = lastMovies.current;
+        const { minCards, newCount } = getCardsValues();
+        setShowMovies((old) => {
+          if (old.length < minCards) {
+            return movies.slice(0, minCards);
+          }
+          const newLength = old.length - minCards;
+          const correctNewLength = Math.ceil(newLength / newCount) * newCount;
+          if (newLength === correctNewLength) {
+            return old;
+          }
+          return movies.slice(0, minCards + correctNewLength);
+        });
+        isBusy = false;
+      });
+    };
+    window.addEventListener('resize', onResize, { passive: true });
+    return () =>
+      window.removeEventListener('resize', onResize, { passive: true });
+  }, []);
 
   const showMoreMovies = () => {
     const { newCount } = getCardsValues();
@@ -80,9 +80,9 @@ const MoviesCardList = () => {
                 </li>
               );
             })
-          ) : (
+          ) : isSearchMode ? (
             <p className={css.moviescardlist__message}>Ничего не найдено</p>
-          )}
+          ) : null}
         </ul>
       </section>
       {movies && showMovies && movies.length > showMovies.length ? (
