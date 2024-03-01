@@ -3,17 +3,23 @@ import css from './ProfileView.module.css';
 import { clearSavedMovies } from '../../contexts/MoviesContext';
 import mainapi from '../../utils/MainApi';
 import { useNavigate } from 'react-router-dom';
-import { useUserEmail, useUserName } from '../../contexts/CurrentUserContext';
+import {
+  useUserEmail,
+  useUserName,
+  useClearUser,
+} from '../../contexts/CurrentUserContext';
 
 const ProfileView = ({ onStartEdit }) => {
   const name = useUserName();
   const email = useUserEmail();
+  const clearUser = useClearUser();
   const navigate = useNavigate();
 
   const doExit = useCallback(async () => {
     try {
       await mainapi.signout();
       clearSavedMovies();
+      clearUser();
       navigate('/');
     } catch (error) {
       console.log(error);

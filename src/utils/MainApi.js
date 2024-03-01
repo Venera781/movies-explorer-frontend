@@ -1,18 +1,10 @@
 import Api from './Api';
 import MovieState from './MovieState';
 
-const normalizeUser = (data) => {
-  return {
-    name: data.name,
-    email: data.email,
-  };
-};
-
 class MainApi extends Api {
   //получить данные пользователя
   async getInfoUser() {
-    const user = await this._getData('users/me', true);
-    return normalizeUser(user);
+    return await this._getData('users/me', true);
   }
 
   async authorize({ email, password }) {
@@ -33,11 +25,10 @@ class MainApi extends Api {
 
   //обновляет данные о пользователе
   async editProfile({ newName, newEmail }) {
-    const updatedUser = await this._sendData('users/me', 'PATCH', true, {
+    return await this._sendData('users/me', 'PATCH', true, {
       newName,
       newEmail,
     });
-    return normalizeUser(updatedUser);
   }
 
   // возвращает все сохранённые текущим пользователем карточки фильмов

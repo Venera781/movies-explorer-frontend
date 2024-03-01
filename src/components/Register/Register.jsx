@@ -6,6 +6,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import mainapi from '../../utils/MainApi';
+import { useSetCurrentUser } from '../../contexts/CurrentUserContext';
 
 const schema = yup
   .object()
@@ -33,6 +34,7 @@ const Register = () => {
   const nameId = useId();
   const emailId = useId();
   const passwordId = useId();
+  const setCurrentUser = useSetCurrentUser();
   const {
     register,
     handleSubmit,
@@ -45,8 +47,9 @@ const Register = () => {
 
   const onRegister = async (data) => {
     try {
-      await mainapi.register(data);
+      const userData = await mainapi.register(data);
       reset();
+      setCurrentUser(userData);
 
       navigate('/movies');
     } catch (err) {
