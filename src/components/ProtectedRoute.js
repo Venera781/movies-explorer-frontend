@@ -1,6 +1,5 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
-import PathName from '../utils/PathName';
 import StateUser from '../utils/StateUser';
 import { useUserState } from '../contexts/CurrentUserContext';
 
@@ -15,7 +14,7 @@ const ProtectedRoute = ({ children }) => {
       return <>{children}</>;
     case StateUser.error:
     default:
-      return <Navigate to={PathName.login} replace />;
+      return <Navigate to="/" replace />;
   }
 };
 export default ProtectedRoute;
