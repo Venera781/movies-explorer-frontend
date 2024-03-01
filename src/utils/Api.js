@@ -15,7 +15,7 @@ class Api {
       return Promise.reject(`Ошибка: ${res.status}`);
     });
   }
-  _sendData(path, method, addCookies, body) {
+  _sendData(path, method, addCookies, body, ignoreResult = false) {
     return fetch(`${this._baseUrl}/${path}`, {
       method: method,
       headers: this._headers,
@@ -23,7 +23,7 @@ class Api {
       body: JSON.stringify(body),
     }).then((res) => {
       if (res.ok) {
-        return res.json();
+        return ignoreResult ? null : res.json();
       }
       return Promise.reject(`Ошибка: ${res.status}`);
     });

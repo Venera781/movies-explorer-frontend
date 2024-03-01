@@ -28,7 +28,7 @@ class MainApi extends Api {
   }
 
   async signout() {
-    return await this._sendData('signout', 'POST', true);
+    return await this._sendData('signout', 'POST', true, undefined, true);
   }
 
   //обновляет данные о пользователе

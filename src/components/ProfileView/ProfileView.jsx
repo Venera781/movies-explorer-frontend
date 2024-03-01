@@ -15,7 +15,9 @@ const ProfileView = ({ onStartEdit }) => {
       await mainapi.signout();
       clearSavedMovies();
       navigate('/');
-    } catch {}
+    } catch (error) {
+      console.log(error);
+    }
   }, [navigate]);
 
   return (
