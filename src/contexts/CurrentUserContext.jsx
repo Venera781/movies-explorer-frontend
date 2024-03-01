@@ -23,11 +23,11 @@ const CurrentUserProvider = ({ children }) => {
   const userState = user.state;
 
   useEffect(() => {
-    if (userState === StateUser.loggedIn) {
-      return;
-    }
     if (pathname === PathName.register || pathname === PathName.login) {
       setUser({ state: StateUser.idle, data: null });
+      return;
+    }
+    if (userState === StateUser.loggedIn || userState === StateUser.error) {
       return;
     }
     const getUserFn = async () => {
