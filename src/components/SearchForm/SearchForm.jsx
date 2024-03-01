@@ -11,7 +11,7 @@ export const schema = yup
   .shape({
     moviesname: yup
       .string()
-      // .min(2, 'Необходимо минимум 2 символа')
+      .min(2, 'Необходимо минимум 2 символа')
       .matches(/^[а-яёa-z]+$/i, 'Необходима кириллица или латиница')
       .required('Нужно ввести название фильма'),
     isShort: yup.boolean(),
