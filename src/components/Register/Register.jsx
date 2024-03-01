@@ -7,6 +7,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import mainapi from '../../utils/MainApi';
 import { useSetCurrentUser } from '../../contexts/CurrentUserContext';
+import emailRegex from '../../utils/emailRegex';
 
 const schema = yup
   .object()
@@ -19,7 +20,8 @@ const schema = yup
       .required('Введите имя'),
     email: yup
       .string()
-      .email(
+      .matches(
+        emailRegex,
         'Неверно введен email. Необходимо ввести в формате example@mail.com',
       )
       .required('Введите email'),
