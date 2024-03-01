@@ -5,21 +5,14 @@ import { useUserState } from '../contexts/CurrentUserContext';
 
 const ProtectedRoute = ({ children, reverse }) => {
   const userState = useUserState();
-
-  switch (userState) {
-    case StateUser.idle:
-      if (reverse) {
-        return <>{children}</>;
-      }
-    case StateUser.checking:
-      return <p>Загрузка...</p>;
-    case StateUser.loggedIn:
-      if (!reverse) {
-        return <>{children}</>;
-      }
-    case StateUser.error:
-    default:
-      return <Navigate to="/" replace />;
+  if (
+    reverse ? userState === StateUser.idle : userState === StateUser.loggedIn
+  ) {
+    return <>{children}</>;
   }
+  if (userState === StateUser.checking) {
+    return <p>Загрузка</p>;
+  }
+  return <Navigate to="/" replace />;
 };
 export default ProtectedRoute;

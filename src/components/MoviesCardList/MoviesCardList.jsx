@@ -62,7 +62,7 @@ const MoviesCardList = () => {
     window.addEventListener('resize', onResize, { passive: true });
     return () =>
       window.removeEventListener('resize', onResize, { passive: true });
-  }, []);
+  }, [setVisibleCount]);
 
   const showMoreMovies = () => {
     const { newCount } = getCardsValues();

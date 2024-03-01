@@ -8,7 +8,7 @@ const Portfolio = () => {
         <a
           className={css.portfolio__link}
           target="_blank"
-          href="https://github.com/Venera781/how-to-learn"
+          href="https://github.com/Venera781/how-to-learn" rel="noreferrer"
         >
           Статичный сайт
         </a>
@@ -16,7 +16,7 @@ const Portfolio = () => {
         <a
           className={css.portfolio__link}
           target="_blank"
-          href="https://venera781.github.io/russian-travel/"
+          href="https://venera781.github.io/russian-travel/" rel="noreferrer"
         >
           Адаптивный сайт
         </a>
@@ -24,7 +24,7 @@ const Portfolio = () => {
         <a
           className={css.portfolio__link}
           target="_blank"
-          href="https://github.com/Venera781/react-mesto-api-full-gha"
+          href="https://github.com/Venera781/react-mesto-api-full-gha" rel="noreferrer"
         >
           Одностраничное приложение
         </a>

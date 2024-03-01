@@ -8,8 +8,10 @@ import {
 import MovieState from '../utils/MovieState';
 import { produce } from 'immer';
 import mainapi from '../utils/MainApi';
+import ShortValueMovie from '../utils/ShortValueMovie';
+import Actions from '../utils/Actions';
 
-const MOVIES_KEY = 'currentmovies';
+const MOVIES_KEY = 'currentmovies1';
 const MoviesContext = createContext();
 const MoviesChangeContext = createContext();
 
@@ -42,14 +44,6 @@ export const useSearchState = () => {
 export const useFilterMovies = () => {
   const context = useContext(MoviesChangeContext);
   return context.filterMovies;
-};
-
-const Actions = {
-  AddFavorite: 0,
-  RemoveFavorite: 1,
-  FilterMovies: 2,
-  MainRemoveFavorite: 3,
-  SetVisibleCount: 4,
 };
 
 const initState = ({ movies, isMain }) => {
@@ -135,7 +129,7 @@ const moviesReducer = (state, action) => {
         if (text) {
           const fixedText = text.toLowerCase();
           currentMovies = draft.initMovies.filter((movie) => {
-            if (isShort && movie.duration > 40) {
+            if (isShort && movie.duration > ShortValueMovie) {
               return false;
             }
             if (fixedText && !movie.nameSearch.includes(fixedText)) {
@@ -152,6 +146,7 @@ const moviesReducer = (state, action) => {
       }
       case Actions.SetVisibleCount: {
         draft.visibleElements = action.count;
+        break;
       }
       default:
         break;

@@ -24,7 +24,7 @@ const ProfileView = ({ onStartEdit }) => {
     } catch (error) {
       console.log(error);
     }
-  }, [navigate]);
+  }, [navigate, clearUser]);
 
   return (
     <div className={css.profileview}>
