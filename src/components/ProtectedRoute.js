@@ -3,15 +3,20 @@ import { Navigate } from 'react-router-dom';
 import StateUser from '../utils/StateUser';
 import { useUserState } from '../contexts/CurrentUserContext';
 
-const ProtectedRoute = ({ children }) => {
+const ProtectedRoute = ({ children, reverse }) => {
   const userState = useUserState();
 
   switch (userState) {
     case StateUser.idle:
+      if (reverse) {
+        return <>{children}</>;
+      }
     case StateUser.checking:
       return <p>Загрузка...</p>;
     case StateUser.loggedIn:
-      return <>{children}</>;
+      if (!reverse) {
+        return <>{children}</>;
+      }
     case StateUser.error:
     default:
       return <Navigate to="/" replace />;

@@ -11,18 +11,31 @@ import NotFound from '../NotFound/NotFound';
 import ProtectedRoute from '../ProtectedRoute';
 import CurrentUserProvider from '../../contexts/CurrentUserContext';
 const App = () => {
-
   return (
     <CurrentUserProvider>
       <div className={css.page__content}>
         <Routes>
-          <Route path={PathName.register} element={<Register onRegister />} />
-          <Route path={PathName.login} element={<Login onLogin />} />
+          <Route
+            path={PathName.register}
+            element={
+              <ProtectedRoute reverse>
+                <Register />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path={PathName.login}
+            element={
+              <ProtectedRoute reverse>
+                <Login />
+              </ProtectedRoute>
+            }
+          />
           <Route path={PathName.project} element={<Main />} />
           <Route
             path={PathName.movies}
             element={
-              <ProtectedRoute >
+              <ProtectedRoute>
                 <Movies />
               </ProtectedRoute>
             }
