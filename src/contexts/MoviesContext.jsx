@@ -9,13 +9,20 @@ import MovieState from '../utils/MovieState';
 import { produce } from 'immer';
 import mainapi from '../utils/MainApi';
 
-const MOVIES_KEY = 'currentmovies';
+const MOVIES_KEY = 'currentmovies1';
 const MoviesContext = createContext();
 const MoviesChangeContext = createContext();
 
 export const useMovies = () => {
   const ctx = useContext(MoviesContext);
-  return [ctx.currentMovies, ctx.text !== ''];
+  const ctxChange = useContext(MoviesChangeContext);
+
+  return [
+    ctx.currentMovies,
+    ctx.text !== '',
+    ctx.visibleElements,
+    ctxChange.setVisibleCount,
+  ];
 };
 
 export const useModifyFavorite = () => {
@@ -42,23 +49,32 @@ const Actions = {
   RemoveFavorite: 1,
   FilterMovies: 2,
   MainRemoveFavorite: 3,
+  SetVisibleCount: 4,
 };
 
-const initState = ({ movies, saveMovies }) => {
-  if (saveMovies) {
-    try {
-      const { currentMovies, text, isShort } = JSON.parse(
-        localStorage.getItem(MOVIES_KEY),
-      );
-      return { initMovies: movies, currentMovies, text, isShort, saveMovies };
-    } catch {}
+const initState = ({ movies, isMain }) => {
+  try {
+    const { currentMovies, text, isShort, visibleElements } = JSON.parse(
+      localStorage.getItem(MOVIES_KEY),
+    );
+    return {
+      initMovies: movies,
+      currentMovies: isMain ? currentMovies : movies,
+      text: isMain ? text : '',
+      isShort: isMain ? isShort : false,
+      isMain,
+      visibleElements,
+    };
+  } catch (error) {
+    console.log(error);
   }
   return {
     initMovies: movies,
-    currentMovies: saveMovies ? null : movies,
-    saveMovies,
+    currentMovies: isMain ? null : movies,
+    isMain,
     text: '',
     isShort: false,
+    visibleElements: -1,
   };
 };
 const moviesReducer = (state, action) => {
@@ -128,31 +144,35 @@ const moviesReducer = (state, action) => {
             return true;
           });
         }
+        draft.visibleElements = -1;
         draft.currentMovies = currentMovies;
         draft.text = text;
         draft.isShort = isShort;
         break;
       }
+      case Actions.SetVisibleCount: {
+        draft.visibleElements = action.count;
+      }
       default:
         break;
     }
   });
-  if (newState.saveMovies) {
-    localStorage.setItem(
-      MOVIES_KEY,
-      JSON.stringify({
-        currentMovies: newState.currentMovies,
-        text: newState.text,
-        isShort: newState.isShort,
-      }),
-    );
-  }
+
+  localStorage.setItem(
+    MOVIES_KEY,
+    JSON.stringify({
+      currentMovies: newState.isMain ? newState.currentMovies : null,
+      text: newState.isMain ? newState.text : null,
+      isShort: newState.isMain ? newState.isShort : null,
+      visibleElements: newState.visibleElements,
+    }),
+  );
   return newState;
 };
-const MoviesProvider = ({ movies, saveMovies, children }) => {
+const MoviesProvider = ({ movies, isMain, children }) => {
   const [state, dispatch] = useReducer(
     moviesReducer,
-    { movies, saveMovies },
+    { movies, isMain },
     initState,
   );
 
@@ -161,6 +181,10 @@ const MoviesProvider = ({ movies, saveMovies, children }) => {
       await mainapi.deleteMovie(movie.favId);
       dispatch({ type: Actions.MainRemoveFavorite, movieId: movie.id });
     } catch {}
+  }, []);
+
+  const setVisibleCount = useCallback((count) => {
+    dispatch({ type: Actions.SetVisibleCount, count });
   }, []);
 
   const addFavorite = useCallback(async (movie) => {
@@ -183,8 +207,20 @@ const MoviesProvider = ({ movies, saveMovies, children }) => {
     dispatch({ type: Actions.FilterMovies, text, isShort });
   }, []);
   const allFuncs = useMemo(() => {
-    return { addFavorite, removeFavorite, filterMovies, removeFavoriteMain };
-  }, [addFavorite, removeFavorite, filterMovies, removeFavoriteMain]);
+    return {
+      addFavorite,
+      removeFavorite,
+      filterMovies,
+      removeFavoriteMain,
+      setVisibleCount,
+    };
+  }, [
+    addFavorite,
+    removeFavorite,
+    filterMovies,
+    removeFavoriteMain,
+    setVisibleCount,
+  ]);
 
   return (
     <MoviesChangeContext.Provider value={allFuncs}>

@@ -1,6 +1,6 @@
 import css from './MoviesCardList.module.css';
 import MoviesCard from '../MoviesCard/MoviesCard';
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useMovies } from '../../contexts/MoviesContext';
 
 const getCardsValues = () => {
@@ -17,19 +17,20 @@ const getCardsValues = () => {
 };
 
 const MoviesCardList = () => {
-  const [movies, isSearchMode] = useMovies();
-  const lastMovies = useRef(null);
-  const [showMovies, setShowMovies] = useState(null);
+  const [movies, isSearchMode, visibleCount, setVisibleCount] = useMovies();
+  const lastVisibleCount = useRef(visibleCount);
+  const [realVisibleCount, setRealVisibleCount] = useState(visibleCount);
 
   useEffect(() => {
-    if (movies === null || movies.length === 0) {
-      setShowMovies(null);
-      return;
+    if (visibleCount === -1) {
+      const { minCards } = getCardsValues();
+      lastVisibleCount.current = minCards;
+      setRealVisibleCount(minCards);
+    } else {
+      lastVisibleCount.current = visibleCount;
+      setRealVisibleCount(visibleCount);
     }
-    const { minCards } = getCardsValues();
-    lastMovies.current = movies;
-    setShowMovies(movies.slice(0, minCards));
-  }, [movies]);
+  }, [visibleCount]);
 
   useEffect(() => {
     let isBusy = false;
@@ -40,19 +41,18 @@ const MoviesCardList = () => {
       isBusy = true;
 
       requestAnimationFrame(() => {
-        const movies = lastMovies.current;
+        const count = lastVisibleCount.current;
         const { minCards, newCount } = getCardsValues();
-        setShowMovies((old) => {
-          if (old.length < minCards) {
-            return movies.slice(0, minCards);
-          }
-          const newLength = old.length - minCards;
+        if (count < minCards) {
+          setVisibleCount(minCards);
+        } else {
+          const newLength = count - minCards;
           const correctNewLength = Math.ceil(newLength / newCount) * newCount;
-          if (newLength === correctNewLength) {
-            return old;
+          if (newLength !== correctNewLength) {
+            setVisibleCount(minCards + correctNewLength);
           }
-          return movies.slice(0, minCards + correctNewLength);
-        });
+        }
+
         isBusy = false;
       });
     };
@@ -63,29 +63,29 @@ const MoviesCardList = () => {
 
   const showMoreMovies = () => {
     const { newCount } = getCardsValues();
-    setShowMovies((old) => {
-      return movies.slice(0, old.length + newCount);
-    });
+    setVisibleCount(lastVisibleCount.current + newCount);
   };
+
+  const count = realVisibleCount;
 
   return (
     <>
       <section className={css.moviescardlist}>
         <ul className={css.moviescardlist__items}>
-          {showMovies && showMovies.length !== 0 ? (
-            showMovies.map((movie) => {
+          {movies && movies.length !== 0 && count !== -1 ? (
+            movies.slice(0, count).map((movie) => {
               return (
                 <li className={css.moviescardlist__element} key={movie.id}>
                   <MoviesCard movie={movie} />
                 </li>
               );
             })
-          ) : isSearchMode ? (
+          ) : isSearchMode && count !== -1 ? (
             <p className={css.moviescardlist__message}>Ничего не найдено</p>
           ) : null}
         </ul>
       </section>
-      {movies && showMovies && movies.length > showMovies.length ? (
+      {movies && movies.length > count && count !== -1 ? (
         <button className={css.moviescardlist__button} onClick={showMoreMovies}>
           Ещё
         </button>

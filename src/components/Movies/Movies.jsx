@@ -18,9 +18,11 @@ const Movies = () => {
           moviesapi.getListMovies(),
           mainapi.getSavedMovies(),
         ]);
-        const myMoviesIds = new Map(myMovies.map((movie) => [movie.id, movie.favId]));
+        const myMoviesIds = new Map(
+          myMovies.map((movie) => [movie.id, movie.favId]),
+        );
         for (const movie of allMovies) {
-          const favId = myMoviesIds.get(movie.id)
+          const favId = myMoviesIds.get(movie.id);
           if (favId) {
             movie.state = MovieState.saved;
             movie.favId = favId;
@@ -46,7 +48,7 @@ const Movies = () => {
 
   if (movies) {
     return (
-      <MoviesProvider movies={movies} saveMovies>
+      <MoviesProvider movies={movies} isMain>
         <MoviesPage />
       </MoviesProvider>
     );
