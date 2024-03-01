@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import css from './Portfolio.module.css';
 
 const Portfolio = () => {
@@ -6,29 +5,29 @@ const Portfolio = () => {
     <section className={css.portfolio}>
       <h2 className={css.portfolio__h2subtitle}>Портфолио</h2>
       <div className={css.portfolio__sites}>
-        <Link
+        <a
           className={css.portfolio__link}
           target="_blank"
-          to="https://github.com/Venera781/how-to-learn"
+          href="https://github.com/Venera781/how-to-learn"
         >
           Статичный сайт
-        </Link>
+        </a>
         <div className={css.portfolio__line}></div>
-        <Link
+        <a
           className={css.portfolio__link}
           target="_blank"
-          to="https://venera781.github.io/russian-travel/"
+          href="https://venera781.github.io/russian-travel/"
         >
           Адаптивный сайт
-        </Link>
+        </a>
         <div className={css.portfolio__line}></div>
-        <Link
+        <a
           className={css.portfolio__link}
           target="_blank"
-          to="https://github.com/Venera781/react-mesto-api-full-gha"
+          href="https://github.com/Venera781/react-mesto-api-full-gha"
         >
           Одностраничное приложение
-        </Link>
+        </a>
       </div>
     </section>
   );
