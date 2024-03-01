@@ -24,10 +24,10 @@ class MainApi extends Api {
   }
 
   //обновляет данные о пользователе
-  async editProfile({ newName, newEmail }) {
+  async editProfile({ name, email }) {
     return await this._sendData('users/me', 'PATCH', true, {
-      newName,
-      newEmail,
+      name,
+      email,
     });
   }
 

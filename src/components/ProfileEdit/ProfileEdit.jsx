@@ -6,6 +6,7 @@ import * as yup from 'yup';
 import css from './ProfileEdit.module.css';
 import { useUserEmail, useUserName } from '../../contexts/CurrentUserContext';
 import mainapi from '../../utils/MainApi';
+import { useSetCurrentUser } from '../../contexts/CurrentUserContext';
 
 const schema = yup
   .object()
@@ -30,6 +31,7 @@ const ProfileEdit = ({ onEditFinish }) => {
   const email = useUserEmail();
   const nameId = useId();
   const emailId = useId();
+  const setCurrentUser = useSetCurrentUser();
 
   const {
     register,
@@ -42,10 +44,11 @@ const ProfileEdit = ({ onEditFinish }) => {
     defaultValues: { name, email },
   });
 
-  const onEdit = async ({ newName, newEmail }) => {
+  const onEdit = async ({ name, email }) => {
     try {
-      await mainapi.editProfile({ newName, newEmail });
+      const userData = await mainapi.editProfile({ name, email });
       reset();
+      setCurrentUser(userData);
       onEditFinish();
     } catch (err) {
       setError('root', { type: 'custom', message: err.message });
