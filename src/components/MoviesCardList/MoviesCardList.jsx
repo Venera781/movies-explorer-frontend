@@ -2,7 +2,7 @@ import css from './MoviesCardList.module.css';
 import MoviesCard from '../MoviesCard/MoviesCard';
 import { useEffect, useRef, useState } from 'react';
 import { useMovies } from '../../contexts/MoviesContext';
-import CardsCount from '../../utils/cardsCount';
+import CardsCount from '../../utils/CardsCount';
 import ScreenSize from '../../utils/ScreenSize';
 import VisCount from '../../utils/VisCount';
 
