@@ -9,7 +9,7 @@ import {
   useClearUser,
 } from '../../contexts/CurrentUserContext';
 
-const ProfileView = ({ onStartEdit }) => {
+const ProfileView = ({ onStartEdit, on }) => {
   const name = useUserName();
   const email = useUserEmail();
   const clearUser = useClearUser();
@@ -21,9 +21,7 @@ const ProfileView = ({ onStartEdit }) => {
       clearSavedMovies();
       clearUser();
       navigate('/');
-    } catch (error) {
-      console.log(error);
-    }
+    } catch {}
   }, [navigate, clearUser]);
 
   return (
@@ -36,6 +34,7 @@ const ProfileView = ({ onStartEdit }) => {
         <p className={css.profileview__emailtitle}>E-mail</p>
         <p className={css.profileview__emailvalue}>{email}</p>
       </div>
+     
       <button className={css.profileview__button} onClick={onStartEdit}>
         Редактировать
       </button>

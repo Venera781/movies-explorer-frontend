@@ -11,9 +11,13 @@ import mainapi from '../utils/MainApi';
 import ShortValueMovie from '../utils/ShortValueMovie';
 import Actions from '../utils/Actions';
 
-const MOVIES_KEY = 'currentmovies1';
+const MOVIES_KEY = 'currentmovies';
 const MoviesContext = createContext();
 const MoviesChangeContext = createContext();
+
+const getStorageName = (isMain) => {
+  return MOVIES_KEY + (isMain ? '_main' : '_fav');
+};
 
 export const useMovies = () => {
   const ctx = useContext(MoviesContext);
@@ -26,14 +30,13 @@ export const useMovies = () => {
     ctxChange.setVisibleCount,
   ];
 };
-
 export const useModifyFavorite = () => {
   const ctx = useContext(MoviesChangeContext);
   return [ctx.addFavorite, ctx.removeFavorite, ctx.removeFavoriteMain];
 };
 
 export const clearSavedMovies = () => {
-  localStorage.removeItem(MOVIES_KEY);
+  localStorage.clear();
 };
 
 export const useSearchState = () => {
@@ -49,7 +52,7 @@ export const useFilterMovies = () => {
 const initState = ({ movies, isMain }) => {
   try {
     const { currentMovies, text, isShort, visibleElements } = JSON.parse(
-      localStorage.getItem(MOVIES_KEY),
+      localStorage.getItem(getStorageName(isMain)),
     );
     return {
       initMovies: movies,
@@ -59,9 +62,7 @@ const initState = ({ movies, isMain }) => {
       isMain,
       visibleElements,
     };
-  } catch (error) {
-    console.log(error);
-  }
+  } catch {}
   return {
     initMovies: movies,
     currentMovies: isMain ? null : movies,
@@ -123,21 +124,20 @@ const moviesReducer = (state, action) => {
         break;
       }
       case Actions.FilterMovies: {
-        const text = action.text ?? draft.text;
-        const isShort = action.isShort ?? draft.isShort;
+        const text = action.text;
+        const isShort = action.isShort;
         let currentMovies = null;
-        if (text) {
-          const fixedText = text.toLowerCase();
-          currentMovies = draft.initMovies.filter((movie) => {
-            if (isShort && movie.duration > ShortValueMovie) {
-              return false;
-            }
-            if (fixedText && !movie.nameSearch.includes(fixedText)) {
-              return false;
-            }
-            return true;
-          });
-        }
+
+        const fixedText = text.trim().toLowerCase();
+        currentMovies = draft.initMovies.filter((movie) => {
+          if (isShort && movie.duration > ShortValueMovie) {
+            return false;
+          }
+          if (fixedText && !movie.nameSearch.includes(fixedText)) {
+            return false;
+          }
+          return true;
+        });
         draft.visibleElements = -1;
         draft.currentMovies = currentMovies;
         draft.text = text;
@@ -154,7 +154,7 @@ const moviesReducer = (state, action) => {
   });
 
   localStorage.setItem(
-    MOVIES_KEY,
+    getStorageName(newState.isMain),
     JSON.stringify({
       currentMovies: newState.isMain ? newState.currentMovies : null,
       text: newState.isMain ? newState.text : null,

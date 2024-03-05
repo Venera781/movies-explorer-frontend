@@ -26,7 +26,7 @@
 }
 
 .moviescardlist__message {
-  margin: 0;
+  margin: 20px auto;
   font-size: 20px;
   line-height: 24px;
   text-align: center;

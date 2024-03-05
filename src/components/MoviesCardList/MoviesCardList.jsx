@@ -10,13 +10,16 @@ const getCardsValues = () => {
   const width = window.innerWidth;
   let minCards = CardsCount.mobile;
   let newCount = CardsCount.mobileNewCount;
+  let sizeId = ScreenSize.mobile;
   if (width >= ScreenSize.web) {
+    sizeId = ScreenSize.web;
     minCards = CardsCount.web;
     newCount = CardsCount.webNewCount;
   } else if (width >= ScreenSize.iPad) {
+    sizeId = ScreenSize.iPad;
     minCards = CardsCount.iPad;
   }
-  return { minCards, newCount };
+  return { minCards, newCount, sizeId };
 };
 
 const MoviesCardList = () => {
@@ -37,6 +40,7 @@ const MoviesCardList = () => {
 
   useEffect(() => {
     let isBusy = false;
+    let { sizeId } = getCardsValues();
     const onResize = () => {
       if (isBusy) {
         return;
@@ -44,18 +48,11 @@ const MoviesCardList = () => {
       isBusy = true;
 
       requestAnimationFrame(() => {
-        const count = lastVisibleCount.current;
-        const { minCards, newCount } = getCardsValues();
-        if (count < minCards) {
+        const { sizeId: newSizeId, minCards } = getCardsValues();
+        if (newSizeId !== sizeId) {
           setVisibleCount(minCards);
-        } else {
-          const newLength = count - minCards;
-          const correctNewLength = Math.ceil(newLength / newCount) * newCount;
-          if (newLength !== correctNewLength) {
-            setVisibleCount(minCards + correctNewLength);
-          }
+          sizeId = newSizeId;
         }
-
         isBusy = false;
       });
     };
@@ -74,21 +71,21 @@ const MoviesCardList = () => {
   return (
     <>
       <section className={css.moviescardlist}>
-        <ul className={css.moviescardlist__items}>
-          {movies &&
-          movies.length !== VisCount.plus &&
-          count !== VisCount.mines ? (
-            movies.slice(0, count).map((movie) => {
+        {movies &&
+        movies.length !== VisCount.plus &&
+        count !== VisCount.mines ? (
+          <ul className={css.moviescardlist__items}>
+            {movies.slice(0, count).map((movie) => {
               return (
                 <li className={css.moviescardlist__element} key={movie.id}>
                   <MoviesCard movie={movie} />
                 </li>
               );
-            })
-          ) : isSearchMode && count !== VisCount.mines ? (
-            <p className={css.moviescardlist__message}>Ничего не найдено</p>
-          ) : null}
-        </ul>
+            })}{' '}
+          </ul>
+        ) : isSearchMode && count !== VisCount.mines ? (
+          <p className={css.moviescardlist__message}>Ничего не найдено</p>
+        ) : null}
       </section>
       {movies && movies.length > count && count !== VisCount.mines ? (
         <button className={css.moviescardlist__button} onClick={showMoreMovies}>

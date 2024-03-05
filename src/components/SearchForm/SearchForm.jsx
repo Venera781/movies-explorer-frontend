@@ -9,11 +9,7 @@ import { useFilterMovies, useSearchState } from '../../contexts/MoviesContext';
 export const schema = yup
   .object()
   .shape({
-    moviesname: yup
-      .string()
-      .min(2, 'Необходимо минимум 2 символа')
-      .matches(/^[а-яёa-z]+$/i, 'Необходима кириллица или латиница')
-      .required('Нужно ввести название фильма'),
+    moviesname: yup.string().required('Нужно ввести название фильма'),
   })
   .required();
 
@@ -22,6 +18,7 @@ const SearchForm = () => {
   const filterMovies = useFilterMovies();
   const {
     register,
+    getValues,
     handleSubmit,
     formState: { isSubmitting, isValid, isSubmitted },
   } = useForm({
@@ -34,7 +31,8 @@ const SearchForm = () => {
   };
 
   const onShortCheked = () => {
-    filterMovies(undefined, !isShort);
+    const moviesName = getValues('moviesname');
+    filterMovies(moviesName, !isShort);
   };
   return (
     <form
