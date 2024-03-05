@@ -1,8 +1,28 @@
+import { useCallback } from 'react';
 import css from './ProfileView.module.css';
+import { clearSavedMovies } from '../../contexts/MoviesContext';
+import mainapi from '../../utils/MainApi';
+import { useNavigate } from 'react-router-dom';
+import {
+  useUserEmail,
+  useUserName,
+  useClearUser,
+} from '../../contexts/CurrentUserContext';
 
-const ProfileView = ({ onStartEdit }) => {
-  const name = 'Виталий';
-  const email = 'pochta@yandex.ru';
+const ProfileView = ({ onStartEdit, on }) => {
+  const name = useUserName();
+  const email = useUserEmail();
+  const clearUser = useClearUser();
+  const navigate = useNavigate();
+
+  const doExit = useCallback(async () => {
+    try {
+      await mainapi.signout();
+      clearSavedMovies();
+      clearUser();
+      navigate('/');
+    } catch {}
+  }, [navigate, clearUser]);
 
   return (
     <div className={css.profileview}>
@@ -14,10 +34,13 @@ const ProfileView = ({ onStartEdit }) => {
         <p className={css.profileview__emailtitle}>E-mail</p>
         <p className={css.profileview__emailvalue}>{email}</p>
       </div>
+     
       <button className={css.profileview__button} onClick={onStartEdit}>
         Редактировать
       </button>
-      <button className={css.profileview__exit}>Выйти из аккаунта</button>
+      <button className={css.profileview__exit} onClick={doExit}>
+        Выйти из аккаунта
+      </button>
     </div>
   );
 };

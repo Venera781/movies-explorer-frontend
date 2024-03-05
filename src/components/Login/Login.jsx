@@ -1,31 +1,55 @@
 import css from './Login.module.css';
 import cx from '../../utils/cx';
 import { useId } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import mainapi from '../../utils/MainApi';
+import { useSetCurrentUser } from '../../contexts/CurrentUserContext';
+import emailRegex from '../../utils/emailRegex';
 
 const schema = yup
   .object()
   .shape({
-    email: yup.string().email().required(),
-    password: yup.string().required(),
+    email: yup
+      .string()
+      .matches(
+        emailRegex,
+        'Неверно введен email. Необходимо ввести в формате example@mail.com',
+      )
+      .required('Введите email'),
+    password: yup
+      .string()
+      .min(8, 'Пароль должен быть длиннее 8 символов')
+      .required('Пароль должен быть длиннее 8 символов'),
   })
   .required();
 
 const Login = () => {
   const emaiId = useId();
   const passwordId = useId();
+  const setCurrentUser = useSetCurrentUser();
+
+  const navigate = useNavigate();
 
   const {
     register,
     handleSubmit,
     formState: { errors, isValid, isSubmitting, isSubmitted },
-  } = useForm({ resolver: yupResolver(schema) });
+    setError,
+    reset,
+  } = useForm({ resolver: yupResolver(schema), mode: 'onChange' });
 
-  const onLogin = ({ email, password }) => {
-    console.log(`Email:${email}, Пароль:${password}`);
+  const onLogin = async (data) => {
+    try {
+      const userData = await mainapi.authorize(data);
+      reset();
+      setCurrentUser(userData);
+      navigate('/movies');
+    } catch (err) {
+      setError('root', { type: 'custom', message: err.message });
+    }
   };
 
   return (
@@ -50,6 +74,9 @@ const Login = () => {
             placeholder="Email"
             {...register('email')}
           />
+          <span className={css.loginform__error_email}>
+            {errors.email?.message}
+          </span>
           <label htmlFor={passwordId} className={css.loginform__labelpassword}>
             Пароль
           </label>
@@ -63,6 +90,9 @@ const Login = () => {
             )}
             {...register('password')}
           />
+          <span className={css.loginform__error_password}>
+            {errors.password?.message}
+          </span>
           <p
             className={cx(
               css.loginform__error,
@@ -72,7 +102,10 @@ const Login = () => {
             Что-то пошло не так...
           </p>
         </fieldset>
-        <button className={css.loginform__buttonedit} disabled={isSubmitting}>
+        <button
+          className={css.loginform__buttonedit}
+          disabled={!isValid || (isSubmitted && isSubmitting)}
+        >
           Войти
         </button>
         <div className={css.loginform__wrapper}>

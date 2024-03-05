@@ -1,35 +1,36 @@
 import MoviesPage from '../MoviesPage/MoviesPage';
-import MovieState from '../../utils/MovieState';
-
-const movies = [
-  {
-    id: 1,
-    name: '33 слова о дизайне',
-    duration: '1ч 17м',
-    imageUrl: '/images/film.jpg',
-    state: MovieState.delete,
-  },
-  {
-    id: 2,
-    name: '33 слова о дизайне',
-    duration: '1ч 17м',
-    imageUrl: '/images/film.jpg',
-    state: MovieState.delete,
-  },
-  {
-    id: 3,
-    name: '33 слова о дизайне',
-    duration: '1ч 17м',
-    imageUrl: '/images/film.jpg',
-    state: MovieState.delete,
-  },
-];
+import mainapi from '../../utils/MainApi';
+import { useState, useEffect } from 'react';
+import MoviesProvider from '../../contexts/MoviesContext';
+import Preloader from '../Preloader/Preloader';
 
 const SavedMovies = () => {
-  return (
-    <>
-      <MoviesPage movies={movies}/>
-    </>
-  );
+  const [movies, setMovies] = useState(null);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const loadMovies = async () => {
+      try {
+        const myMovies = await mainapi.getSavedMovies();
+        setMovies(myMovies);
+      } catch (error) {
+        setError(`Ошибка при загрузке: ${error.message}`);
+      }
+    };
+    loadMovies();
+  }, []);
+
+  if (error) {
+    return <p>{error}</p>;
+  }
+
+  if (movies) {
+    return (
+      <MoviesProvider movies={movies}>
+        <MoviesPage />
+      </MoviesProvider>
+    );
+  }
+  return <Preloader />;
 };
 export default SavedMovies;

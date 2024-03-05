@@ -53,11 +53,15 @@
     'email_l'
     '.' 10px
     'email_i'
+    '.' 10px
+    'er_email'
     '.' 20px
     'password_l'
     '.' 10px
     'password_i'
     '.' 10px
+    'er_password'
+    '.' 20px
     'error';
   margin: 0;
   border: none;
@@ -87,6 +91,19 @@
   border: none;
   box-sizing: border-box;
 }
+
+.loginform__error_email {
+  grid-area: er_email;
+  margin: 0;
+  min-height: 12px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 10px;
+  line-height: 12px;
+  color: #ee3465;
+  padding: 0;
+}
+
 .loginform__labelpassword {
   grid-row: password_l;
   width: 260px;
@@ -110,6 +127,17 @@
   padding: 15px;
   border: none;
   box-sizing: border-box;
+}
+.loginform__error_password {
+  grid-area: er_password;
+  margin: 0;
+  min-height: 12px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 10px;
+  line-height: 12px;
+  color: #ee3465;
+  padding: 0;
 }
 .loginform__error {
   grid-area: error;
@@ -145,6 +173,12 @@
   opacity: 1;
   transition: opacity 0.5 easy;
 }
+.loginform__buttonedit:disabled {
+  grid-area: buttonedit;
+  background: #f8f8f8;
+  color: #c2c2c2;
+}
+
 .loginform__buttonedit:hover {
   opacity: 0.8;
   cursor: pointer;

@@ -1,19 +1,20 @@
 import { useId } from 'react';
-
 import css from './FilterCheckbox.module.css';
 
-const FilterCheckbox = ({ className }) => {
-  const id = useId();
+const FilterCheckbox = ({ children, className, checked, onChecked }) => {
+  const checkId = useId();
+
   return (
     <div className={className}>
       <input
         className={css.filtercheckbox__checkbox}
-        id={id}
+        id={checkId}
         type="checkbox"
-        name="filter"
+        onChange={onChecked}
+        checked={checked}
       />
-      <label className={css.filtercheckbox__checklabel} htmlFor={id}>
-        Короткометражки
+      <label className={css.filtercheckbox__checklabel} htmlFor={checkId}>
+        {children}
       </label>
     </div>
   );

@@ -1,6 +1,17 @@
 .moviescardlist {
   display: grid;
-  grid-template-columns: repeat(auto-fit, 300px);
+  grid-template:
+    '.' 50px
+    'movies'
+    '.' 10px/ 1fr;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.moviescardlist__items {
+  grid-area: movies;
+  display: grid;
+  grid-template-columns: 300px;
   grid-template-rows: auto;
   justify-content: center;
   row-gap: 36px;
@@ -14,16 +25,78 @@
   display: contents;
 }
 
-@media screen and (min-width: 600px) {
+.moviescardlist__message {
+  margin: 20px auto;
+  font-size: 20px;
+  line-height: 24px;
+  text-align: center;
+  color: #ffffff;
+  font-style: normal;
+  font-weight: normal;
+}
+
+.moviescardlist__button {
+  display: flex;
+  width: 240px;
+  height: 36px;
+  border-radius: 6px;
+  border: 1px solid #424242;
+  margin: 50px auto 80px;
+  background-color: transparent;
+  color: #fff;
+  padding: 11px 20px;
+  color: #fff;
+  text-align: center;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  justify-content: center;
+  opacity: 1;
+  transition: opacity 0.5 easy;
+}
+.moviescardlist__button:hover {
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+.moviescardlist__box {
+  display: flex;
+  width: 100%;
+  min-height: 150px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+@media screen and (min-width: 767px) {
   .moviescardlist {
+    grid-template:
+      '.' 80px
+      'movies'
+      '.' 10px / 1fr;
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+  .moviescardlist__items {
     row-gap: 45px;
-    grid-template-columns: repeat(auto-fit, 339px);
+    grid-template-columns: repeat(2, 339px);
+  }
+  .moviescardlist__button {
+    width: 320px;
   }
 }
 
-@media screen and (min-width: 769px) {
+@media screen and (min-width: 1279px) {
   .moviescardlist {
+    grid-template:
+      '.' 80px
+      'movies'
+      '.' 26px / 1fr;
+    padding-left: auto;
+    padding-right: auto;
+  }
+  .moviescardlist__items {
     row-gap: 58px;
-    grid-template-columns: repeat(auto-fit, 360px);
+    grid-template-columns: repeat(3, 360px);
   }
 }

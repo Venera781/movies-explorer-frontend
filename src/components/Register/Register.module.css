@@ -48,15 +48,21 @@
     'name_l'
     '.' 10px
     'name_i'
+    '.' 10px
+    'er_name'
     '.' 20px
     'email_l'
     '.' 10px
     'email_i'
+    '.' 10px
+    'er_email'
     '.' 20px
     'password_l'
     '.' 10px
     'password_i'
     '.' 10px
+    'er_password'
+    '.' 20px
     'error';
   margin: 0;
   border: none;
@@ -87,6 +93,20 @@
   border: none;
   box-sizing: border-box;
 }
+
+.registerform__error_name {
+  grid-area: er_name;
+  min-height: 12px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 10px;
+  line-height: 12px;
+  color: #ee3465;
+  width: 260px;
+  margin: 0;
+  padding: 0;
+}
+
 .registerform__labelemail {
   grid-area: email_l;
   width: 260px;
@@ -111,6 +131,16 @@
   padding: 15px;
   border: none;
   box-sizing: border-box;
+}
+.registerform__error_email {
+  grid-area: er_email;
+  min-height: 12px;
+  margin: 0;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 10px;
+  line-height: 12px;
+  color: #ee3465;
 }
 .registerform__labelpassword {
   grid-area: password_l;
@@ -137,6 +167,17 @@
   border: none;
   box-sizing: border-box;
 }
+.registerform__error_password {
+  grid-area: er_password;
+  margin: 0;
+  min-height: 12px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 10px;
+  line-height: 12px;
+  color: #ee3465;
+  padding: 0;
+}
 .registerform__error {
   visibility: hidden;
   grid-area: error;
@@ -148,7 +189,7 @@
   margin: 0;
   padding: 0;
 }
-.registerform__error_visible {
+.profileedit__error_visible {
   visibility: visible;
 }
 .registerform__input_error {
@@ -171,6 +212,17 @@
   opacity: 1;
   transition: opacity 0.5 easy;
 }
+
+.registerform__buttonedit_active {
+  background: #f8f8f8;
+  color: #c2c2c2;
+}
+
+.registerform__buttonedit:disabled {
+  background: #f8f8f8;
+  color: #c2c2c2;
+}
+
 .registerform__buttonedit:hover {
   opacity: 0.8;
   cursor: pointer;

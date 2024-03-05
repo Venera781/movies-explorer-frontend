@@ -4,33 +4,55 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useId } from 'react';
 import * as yup from 'yup';
 import css from './ProfileEdit.module.css';
+import { useUserEmail, useUserName } from '../../contexts/CurrentUserContext';
+import mainapi from '../../utils/MainApi';
+import { useSetCurrentUser } from '../../contexts/CurrentUserContext';
 
 const schema = yup
   .object()
   .shape({
-    name: yup.string().required(),
-    email: yup.string().email().required(),
+    name: yup
+      .string()
+      .min(2, 'Необходимо минимум 2 символа')
+      .max(20, 'Возможно максимум 20 символов')
+      .matches(/^[а-яёa-z]+$/i, 'Необходима кириллица или латиница')
+      .required('Введите имя'),
+    email: yup
+      .string()
+      .email(
+        'Неверно введен email. Необходимо ввести в формате example@mail.com',
+      )
+      .required('Введите email'),
   })
   .required();
 
 const ProfileEdit = ({ onEditFinish }) => {
-  const name = 'Виталий';
-  const email = 'pochta@yandex.ru';
+  const name = useUserName();
+  const email = useUserEmail();
   const nameId = useId();
   const emailId = useId();
+  const setCurrentUser = useSetCurrentUser();
 
   const {
     register,
     handleSubmit,
-    formState: { errors, isValid, isSubmitting, isSubmitted },
+    setError,
+    reset,
+    formState: { errors, isValid, isDirty, isSubmitting, isSubmitted },
   } = useForm({
     resolver: yupResolver(schema),
     defaultValues: { name, email },
   });
 
-  const onEdit = ({ name, email }) => {
-    console.log(`Имя:${name}, Email:${email}`);
-    onEditFinish();
+  const onEdit = async ({ name, email }) => {
+    try {
+      const userData = await mainapi.editProfile({ name, email });
+      reset();
+      setCurrentUser(userData);
+      onEditFinish();
+    } catch (err) {
+      setError('root', { type: 'custom', message: err.message });
+    }
   };
 
   return (
@@ -53,7 +75,9 @@ const ProfileEdit = ({ onEditFinish }) => {
           )}
           {...register('name')}
         />
-
+        <span className={css.profileedit__error_name}>
+          {errors.name?.message}
+        </span>
         <div className={css.profileedit__line} />
         <label className={css.profileedit__titleinput} htmlFor={emailId}>
           E-mail
@@ -67,6 +91,9 @@ const ProfileEdit = ({ onEditFinish }) => {
           placeholder="Email"
           {...register('email')}
         />
+        <span className={css.profileedit__error_email}>
+          {errors.email?.message}
+        </span>
       </fieldset>
       <p
         className={cx(
@@ -76,7 +103,10 @@ const ProfileEdit = ({ onEditFinish }) => {
       >
         При обновлении профиля произошла ошибка.
       </p>
-      <button className={css.profileedit__buttonsave} disabled={isSubmitting || (isSubmitted && !isValid)}>
+      <button
+        className={css.profileedit__buttonsave}
+        disabled={isSubmitting || !isDirty || (isSubmitted && !isValid)}
+      >
         Сохранить
       </button>
     </form>

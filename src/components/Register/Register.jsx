@@ -1,17 +1,34 @@
 import css from './Register.module.css';
 import cx from '../../utils/cx';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useId } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import mainapi from '../../utils/MainApi';
+import { useSetCurrentUser } from '../../contexts/CurrentUserContext';
+import emailRegex from '../../utils/emailRegex';
 
 const schema = yup
   .object()
   .shape({
-    name: yup.string().required(),
-    email: yup.string().email().required(),
-    password: yup.string().required(),
+    name: yup
+      .string()
+      .min(2, 'Необходимо минимум 2 символа')
+      .max(20, 'Возможно максимум 20 символов')
+      .matches(/^[а-яёa-z]+$/i, 'Необходима кириллица или латиница')
+      .required('Введите имя'),
+    email: yup
+      .string()
+      .matches(
+        emailRegex,
+        'Неверно введен email. Необходимо ввести в формате example@mail.com',
+      )
+      .required('Введите email'),
+    password: yup
+      .string()
+      .min(8, 'Пароль должен быть длиннее 8 символов')
+      .required('Пароль должен быть длиннее 8 символов'),
   })
   .required();
 
@@ -19,14 +36,27 @@ const Register = () => {
   const nameId = useId();
   const emailId = useId();
   const passwordId = useId();
+  const setCurrentUser = useSetCurrentUser();
   const {
     register,
     handleSubmit,
+    reset,
+    setError,
     formState: { errors, isValid, isSubmitting, isSubmitted },
-  } = useForm({ resolver: yupResolver(schema) });
+  } = useForm({ resolver: yupResolver(schema), mode: 'onChange' });
 
-  const onRegister = ({ name, email, password }) => {
-    console.log(`Имя:${name}, Email:${email}, Пароль:${password}`);
+  const navigate = useNavigate();
+
+  const onRegister = async (data) => {
+    try {
+      const userData = await mainapi.register(data);
+      reset();
+      setCurrentUser(userData);
+
+      navigate('/movies');
+    } catch (err) {
+      setError('root', { type: 'custom', message: err.message });
+    }
   };
 
   return (
@@ -55,6 +85,9 @@ const Register = () => {
             placeholder="Имя"
             {...register('name')}
           />
+          <span className={css.registerform__error_name}>
+            {errors.name?.message}
+          </span>
           <label htmlFor={emailId} className={css.registerform__labelemail}>
             Email
           </label>
@@ -67,6 +100,9 @@ const Register = () => {
             placeholder="Email"
             {...register('email')}
           />
+          <span className={css.registerform__error_email}>
+            {errors.email?.message}
+          </span>
           <label
             htmlFor={passwordId}
             className={css.registerform__labelpassword}
@@ -83,18 +119,21 @@ const Register = () => {
             placeholder="Пароль"
             {...register('password')}
           />
-          <p
+          <span className={css.registerform__error_password}>
+            {errors.password?.message}
+          </span>
+          <span
             className={cx(
               css.registerform__error,
               !isValid && isSubmitted && css.registerform__error_visible,
             )}
           >
             Что-то пошло не так...
-          </p>
+          </span>
         </fieldset>
         <button
           className={css.registerform__buttonedit}
-          disabled={isSubmitting}
+          disabled={!isValid || (isSubmitted && isSubmitting)}
         >
           Зарегистрироваться
         </button>

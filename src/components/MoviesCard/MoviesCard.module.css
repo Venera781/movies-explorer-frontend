@@ -6,11 +6,19 @@
     '. . ' 16px
     'name duration'/1fr auto;
 }
-.moviescard__image {
+.moviescard__link {
   grid-area: image;
   display: block;
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
   width: 300px;
   height: 168px;
+}
+.moviescard__image {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 .moviescard__iconsave {
   grid-area: image;
@@ -79,7 +87,6 @@
   padding: 0;
   opacity: 1;
   transition: opacity 0.5 easy;
-  display: none;
 }
 .moviescard__icondelete:hover {
   opacity: 0.8;
@@ -118,7 +125,7 @@
       '. . ' 25px
       'name duration'/1fr auto;
   }
-  .moviescard__image {
+  .moviescard__link {
     width: 339px;
     height: 190px;
   }
@@ -160,7 +167,7 @@
       'name duration'/1fr auto;
   }
 
-  .moviescard__image {
+  .moviescard__link {
     width: 360px;
     height: 201px;
   }

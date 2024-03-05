@@ -1,30 +1,42 @@
 import css from './SearchForm.module.css';
+import cx from '../../utils/cx';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import { useFilterMovies, useSearchState } from '../../contexts/MoviesContext';
 
-const schema = yup
+export const schema = yup
   .object()
   .shape({
-    moviesname: yup.string().required(),
+    moviesname: yup.string().required('Нужно ввести название фильма'),
   })
   .required();
 
 const SearchForm = () => {
+  const { isShort, text } = useSearchState();
+  const filterMovies = useFilterMovies();
   const {
     register,
+    getValues,
     handleSubmit,
-    formState: { isSubmitting },
-  } = useForm({ resolver: yupResolver(schema) });
+    formState: { isSubmitting, isValid, isSubmitted },
+  } = useForm({
+    defaultValues: { moviesname: text },
+    resolver: yupResolver(schema),
+  });
 
-  const onSearch = ({ moviesname }) => {
-    console.log(`Название фильма:${moviesname}`);
+  const onSubmit = ({ moviesname }) => {
+    filterMovies(moviesname, isShort);
   };
 
+  const onShortCheked = () => {
+    const moviesName = getValues('moviesname');
+    filterMovies(moviesName, !isShort);
+  };
   return (
     <form
-      onSubmit={handleSubmit(onSearch)}
+      onSubmit={handleSubmit(onSubmit)}
       className={css.searchform}
       name="searchform"
     >
@@ -35,13 +47,28 @@ const SearchForm = () => {
           className={css.searchform__input}
           {...register('moviesname')}
         />
+        <span
+          className={cx(
+            css.searchform__error,
+            !isValid && isSubmitted && css.searchform__error_visible,
+          )}
+        >
+          Нужно ввести ключевое слово
+        </span>
         <button
           type="submit"
           className={css.searchform__button}
           disabled={isSubmitting}
         ></button>
       </div>
-      <FilterCheckbox className={css.searchform__checkbox} />
+      <FilterCheckbox
+        className={css.searchform__checkbox}
+        name="isShort"
+        checked={isShort}
+        onChecked={onShortCheked}
+      >
+        Короткометражки
+      </FilterCheckbox>
       <div className={css.searchform__line}></div>
     </form>
   );
